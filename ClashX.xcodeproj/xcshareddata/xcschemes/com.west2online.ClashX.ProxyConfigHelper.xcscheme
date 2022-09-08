@@ -16,7 +16,7 @@
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "F9A7C0682306E874007163C7"
                BuildableName = "com.metacubex.ClashX.ProxyConfigHelper"
-               BlueprintName = "com.metacubex.ClashX.ProxyConfigHelper"
+               BlueprintName = "com.SagerNet.Sing-Box.ProxyConfigHelper"
                ReferencedContainer = "container:ClashX.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -47,7 +47,7 @@
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "F9A7C0682306E874007163C7"
             BuildableName = "com.metacubex.ClashX.ProxyConfigHelper"
-            BlueprintName = "com.metacubex.ClashX.ProxyConfigHelper"
+            BlueprintName = "com.SagerNet.Sing-Box.ProxyConfigHelper"
             ReferencedContainer = "container:ClashX.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
@@ -64,7 +64,7 @@
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "F9A7C0682306E874007163C7"
             BuildableName = "com.metacubex.ClashX.ProxyConfigHelper"
-            BlueprintName = "com.metacubex.ClashX.ProxyConfigHelper"
+            BlueprintName = "com.SagerNet.Sing-Box.ProxyConfigHelper"
             ReferencedContainer = "container:ClashX.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>

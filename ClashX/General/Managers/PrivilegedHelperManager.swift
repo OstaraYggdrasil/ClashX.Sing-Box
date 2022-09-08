@@ -20,7 +20,7 @@ class PrivilegedHelperManager {
     private var authRef: AuthorizationRef?
     private var connection: NSXPCConnection?
     private var _helper: ProxyConfigRemoteProcessProtocol?
-    static let machServiceName = "com.metacubex.ClashX.ProxyConfigHelper"
+    static let machServiceName = "com.SagerNet.Sing-Box.ProxyConfigHelper"
 
     static let shared = PrivilegedHelperManager()
     init() {

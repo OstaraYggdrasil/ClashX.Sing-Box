@@ -3,10 +3,10 @@
 <plist version="1.0">
 <dict>
 	<key>Label</key>
-	<string>com.metacubex.ClashX.ProxyConfigHelper</string>
+	<string>com.SagerNet.Sing-Box.ProxyConfigHelper</string>
 	<key>MachServices</key>
 	<dict>
-		<key>com.metacubex.ClashX.ProxyConfigHelper</key>
+		<key>com.SagerNet.Sing-Box.ProxyConfigHelper</key>
 		<true/>
 	</dict>
 </dict>
