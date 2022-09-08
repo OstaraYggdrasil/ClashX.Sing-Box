@@ -186,48 +186,48 @@ class MetaTask: NSObject {
             let proc = Process()
             proc.executableURL = self.proc.executableURL
             var args = [
-                "-t",
-                "-d",
+                "check",
+                "-D",
                 confPath
             ]
             if confFilePath != "" {
                 args.append(contentsOf: [
-                    "-f",
+                    "-c",
                     confFilePath
                 ])
             }
-            let pipe = Pipe()
-            proc.standardOutput = pipe
+            let outputPipe = Pipe()
+            let errorPipe = Pipe()
+            proc.standardOutput = outputPipe
+            proc.standardError = errorPipe
             
             proc.arguments = args
             try proc.run()
             proc.waitUntilExit()
             
-            guard proc.terminationStatus == 0 else {
-                return "Test failed, status \(proc.terminationStatus)"
-            }
-            
-            let data = pipe.fileHandleForReading.readDataToEndOfFile()
-            guard let string = String(data: data, encoding: String.Encoding.utf8) else {
-                return "Test failed, no found output."
-            }
-            
-            let results = string.split(separator: "\n").map(String.init).map(formatMsg(_:))
-            
-            guard let re = results.last else {
-                return "Test failed, no found output."
-            }
-            
-            if re.hasPrefix("configuration file"),
-               re.hasSuffix("test is successful") {
-                return nil
-            } else if re.hasPrefix("configuration file"),
-                      re.hasSuffix("test failed") {
-                return results.count > 1
-                ? results[results.count - 2]
-                : "Test failed, unknown result."
+            if proc.terminationStatus != 0 {
+                let data = errorPipe.fileHandleForReading.readDataToEndOfFile()
+                if let string = String(data: data, encoding: String.Encoding.utf8) {
+                    if string.contains("FATAL"),
+                       let i = string.range(of: "] ")?.upperBound {
+                        return String(string.suffix(from: i))
+                    } else {
+                        return string
+                    }
+                } else {
+                    return "Test failed, status \(proc.terminationStatus)"
+                }
             } else {
-                return re
+                let data = outputPipe.fileHandleForReading.readDataToEndOfFile()
+                guard let string = String(data: data, encoding: String.Encoding.utf8) else {
+                    return "Test failed, no found output."
+                }
+                if string == "" {
+                    // test success
+                    return nil
+                } else {
+                    return string
+                }
             }
         } catch let error {
             return "\(error)"
