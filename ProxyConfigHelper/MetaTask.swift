@@ -339,26 +339,35 @@ class MetaTask: NSObject {
     }
     
     func parseConfFile(_ confPath: String, confFilePath: String) -> MetaServer? {
-        let fileURL = confFilePath == "" ? URL(fileURLWithPath: confPath).appendingPathComponent("config.yaml", isDirectory: false) : URL(fileURLWithPath: confFilePath)
+        let fileURL = confFilePath == "" ? URL(fileURLWithPath: confPath).appendingPathComponent("config.json", isDirectory: false) : URL(fileURLWithPath: confFilePath)
+        struct ConfigJSON: Decodable {
+            let experimental: ConfigExperimental
+            
+            struct ConfigExperimental: Decodable {
+                let clashAPI: ClashAPI
+                enum CodingKeys: String, CodingKey {
+                    case clashAPI = "clash_api"
+                }
+            }
+            
+            struct ClashAPI: Decodable {
+                let externalController: String
+                let externalUI: String?
+                let secret: String?
+                enum CodingKeys: String, CodingKey {
+                    case externalController = "external_controller",
+                         externalUI = "external_ui",
+                         secret
+                }
+            }
+        }
         
         guard let data = FileManager.default.contents(atPath: fileURL.path),
-              let content = String(data: data, encoding: .utf8) else {
+              let clashConfig = (try? JSONDecoder().decode(ConfigJSON.self, from: data))?.experimental.clashAPI else {
             return nil
         }
-        let lines = content.split(separator: "\n").map(String.init)
         
-        func find(_ key: String) -> String {
-            var re = lines.first(where: { $0.starts(with: "\(key): ") })?.dropFirst("\(key): ".count) ?? ""
-            
-            if re.hasPrefix("\"") && re.hasSuffix("\"")
-                || re.hasPrefix("'") && re.hasSuffix("'") {
-                re.removeLast()
-                re.removeFirst()
-            }
-            return String(re)
-        }
-        
-        return MetaServer(externalController: find("external-controller"),
-                          secret: find("secret"))
+        return MetaServer(externalController: clashConfig.externalController,
+                          secret: clashConfig.secret ?? "")
     }
 }
