@@ -55,13 +55,13 @@ class MetaTask: NSObject {
         }
         
         var args = [
-            "-d",
+            "-D",
             confPath
         ]
         
         if confFilePath != "" {
             args.append(contentsOf: [
-                "-f",
+                "-c",
                 confFilePath
             ])
         }
@@ -81,6 +81,7 @@ class MetaTask: NSObject {
                     returnResult("Can't decode config file.")
                     return
                 }
+                args.append("run")
                 
                 self.proc.arguments = args
                 let pipe = Pipe()
@@ -96,38 +97,6 @@ class MetaTask: NSObject {
                         self.formatMsg(String($0))
                     }.forEach {
                         logs.append($0)
-                        if $0.contains("External controller listen error:") || $0.contains("External controller serve error:") {
-                            returnResult($0)
-                        }
-                        
-                        /*
-                        if let range = $0.range(of: "RESTful API listening at: ") {
-                            let addr = String($0[range.upperBound..<$0.endIndex])
-                            guard addr.split(separator: ":").count == 2,
-                                  let port = Int(addr.split(separator: ":")[1]) else {
-                                returnResult("Not found RESTful API port.")
-                                return
-                            }
-                            let testLP = self.testListenPort(port)
-                            if testLP.pid != 0,
-                               testLP.pid == self.proc.processIdentifier,
-                               testLP.addr == addr {
-                                serverResult.log = logs.joined(separator: "\n")
-                                returnResult(serverResult.jsonString())
-                            } else {
-                                returnResult("Check RESTful API pid failed.")
-                            }
-                        }
-                         */
-                        
-                        if $0.contains("RESTful API listening at:") {
-                            if self.testExternalController(serverResult) {
-                                serverResult.log = logs.joined(separator: "\n")
-                                returnResult(serverResult.jsonString())
-                            } else {
-                                returnResult("Check RESTful API failed.")
-                            }
-                        }
                     }
                 }
                 
@@ -175,7 +144,7 @@ class MetaTask: NSObject {
             guard self.proc.isRunning else { return }
             let proc = Process()
             proc.executableURL = .init(fileURLWithPath: "/bin/kill")
-            proc.arguments = ["-9", "\(self.proc.processIdentifier)"]
+            proc.arguments = ["-15", "\(self.proc.processIdentifier)"]
             try? proc.run()
             proc.waitUntilExit()
         }
@@ -309,7 +278,7 @@ class MetaTask: NSObject {
         let data = pipe.fileHandleForReading.readDataToEndOfFile()
         
         guard let str = try? JSONDecoder().decode(MetaCurl.self, from: data),
-              str.hello == "clash.meta" else {
+              str.hello == "clash" else {
             return false
         }
         return true
