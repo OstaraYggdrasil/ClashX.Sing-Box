@@ -49,7 +49,7 @@ class ConfigManager {
         }
         set {
             UserDefaults.standard.set(newValue, forKey: "selectConfigName")
-            watchCurrentConfigFile()
+//            watchCurrentConfigFile()
         }
     }
 
