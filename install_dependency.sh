@@ -45,4 +45,4 @@ gzip geoip.dat
 mv geoip.dat.gz ./ClashX/Resources/geoip.dat.gz
 echo "install dashboard"
 cd ClashX/Resources
-git clone -b gh-pages https://github.com/MetaCubeX/yacd.git dashboard
+git clone -b gh-pages https://github.com/haishanh/yacd.git dashboard
