@@ -206,7 +206,7 @@ class MetaTask: NSObject {
     func killOldProc() {
         let proc = Process()
         proc.executableURL = .init(fileURLWithPath: "/usr/bin/killall")
-        proc.arguments = ["com.metacubex.ClashX.ProxyConfigHelper.meta"]
+        proc.arguments = ["sing-box"]
         try? proc.run()
         proc.waitUntilExit()
     }
