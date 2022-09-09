@@ -174,7 +174,6 @@
                 <customObject id="Voe-Tx-rLC" customClass="AppDelegate" customModule="Sing_Box" customModuleProvider="target">
                     <connections>
                         <outlet property="allowFromLanMenuItem" destination="Vz8-7n-vx6" id="Fzz-EG-huC"/>
-                        <outlet property="alphaMetaVersionMenuItem" destination="Stq-Vy-QaD" id="2d6-jd-m0Z"/>
                         <outlet property="apiPortMenuItem" destination="hwG-qf-DeZ" id="d6K-i7-yCo"/>
                         <outlet property="autoStartMenuItem" destination="B1J-XB-BiZ" id="xaS-h5-qd0"/>
                         <outlet property="configSeparatorLine" destination="WzG-og-OyZ" id="hhn-AP-zKJ"/>
@@ -183,8 +182,6 @@
                         <outlet property="dashboardMenuItem" destination="XG6-2M-PNi" id="hzn-77-3Uc"/>
                         <outlet property="experimentalMenu" destination="sbS-Fj-gxn" id="m2U-Zq-cKD"/>
                         <outlet property="externalControlSeparator" destination="tXn-AQ-OT3" id="ddo-u2-wUb"/>
-                        <outlet property="flushFakeipCacheMenuItem" destination="WZT-AH-ria" id="Sb4-rY-pg2"/>
-                        <outlet property="hideUnselecableMenuItem" destination="C3l-5G-vzB" id="pxn-sY-Hmf"/>
                         <outlet property="httpPortMenuItem" destination="WNw-8Y-VFw" id="ldW-Gw-Q9L"/>
                         <outlet property="ipMenuItem" destination="D2R-eG-cms" id="ugc-iD-j9T"/>
                         <outlet property="logLevelMenuItem" destination="3Da-fL-Mzr" id="ZCW-Il-fOZ"/>
@@ -192,22 +189,14 @@
                         <outlet property="proxyModeGlobalMenuItem" destination="yiM-U4-MNg" id="M7s-kl-aPh"/>
                         <outlet property="proxyModeMenuItem" destination="jGT-1M-xJu" id="3Xj-xK-MJj"/>
                         <outlet property="proxyModeRuleMenuItem" destination="89n-bD-JHk" id="lT1-J1-X3k"/>
-                        <outlet property="proxyProvidersMenu" destination="PXU-hU-r0O" id="2cc-kM-p9d"/>
-                        <outlet property="proxyProvidersMenuItem" destination="4Jz-gx-7X9" id="4ma-T7-Dvw"/>
                         <outlet property="proxySettingMenuItem" destination="8se-yr-wmp" id="yvm-QP-yoA"/>
                         <outlet property="remoteConfigAutoupdateMenuItem" destination="r8s-OI-tgf" id="tmB-30-trh"/>
-                        <outlet property="ruleProvidersMenu" destination="wiW-XY-cyg" id="AVe-D7-8ft"/>
-                        <outlet property="ruleProvidersMenuItem" destination="cJg-BS-yk2" id="h83-eM-lQY"/>
                         <outlet property="separatorLineTop" destination="1fM-p6-bHd" id="NFb-qS-TKR"/>
                         <outlet property="sepatatorLineEndProxySelect" destination="n67-fU-hLx" id="Vgv-N6-SOH"/>
                         <outlet property="showNetSpeedIndicatorMenuItem" destination="YIO-Vj-64f" id="9a5-3N-Ylk"/>
                         <outlet property="showProxyGroupCurrentMenuItem" destination="j9o-36-NTd" id="5jc-iE-bou"/>
-                        <outlet property="snifferMenuItem" destination="mk5-fI-KvW" id="wy5-NG-fu9"/>
                         <outlet property="socksPortMenuItem" destination="Uy1-g8-r6Q" id="NiI-Gy-9Sa"/>
                         <outlet property="statusMenu" destination="Afa-lD-EbR" id="cov-E9-WrO"/>
-                        <outlet property="tunModeMenuItem" destination="ZoW-Ax-rde" id="ep1-C4-irW"/>
-                        <outlet property="updateAlphaMetaMenuItem" destination="MWh-yg-3Yk" id="jJi-h8-7T2"/>
-                        <outlet property="useAlphaMetaMenuItem" destination="sk5-MZ-XB1" id="Ijq-xa-vVc"/>
                     </connections>
                 </customObject>
                 <menu id="Afa-lD-EbR">
@@ -241,11 +230,6 @@
                         <menuItem title="Set as system proxy" keyEquivalent="s" id="8se-yr-wmp">
                             <connections>
                                 <action selector="actionSetSystemProxy:" target="Voe-Tx-rLC" id="jrp-iz-ljC"/>
-                            </connections>
-                        </menuItem>
-                        <menuItem title="Tun mode" keyEquivalent="e" id="ZoW-Ax-rde">
-                            <connections>
-                                <action selector="tunMode:" target="Voe-Tx-rLC" id="iYh-34-ynf"/>
                             </connections>
                         </menuItem>
                         <menuItem title="Copy shell command" keyEquivalent="c" id="Jmb-PK-rMW">
@@ -366,75 +350,6 @@
                                                 </menuItem>
                                             </items>
                                         </menu>
-                                    </menuItem>
-                                </items>
-                            </menu>
-                        </menuItem>
-                        <menuItem title="Meta" id="F3d-AD-N6E">
-                            <modifierMask key="keyEquivalentModifierMask"/>
-                            <menu key="submenu" title="Meta" id="ji6-hK-w0I">
-                                <items>
-                                    <menuItem title="Sniffer" id="mk5-fI-KvW">
-                                        <modifierMask key="keyEquivalentModifierMask"/>
-                                        <connections>
-                                            <action selector="updateSniffing:" target="Voe-Tx-rLC" id="vO0-Ys-NET"/>
-                                        </connections>
-                                    </menuItem>
-                                    <menuItem title="Update GEO databases" id="WZu-fm-nxd">
-                                        <modifierMask key="keyEquivalentModifierMask"/>
-                                        <connections>
-                                            <action selector="updateGEO:" target="Voe-Tx-rLC" id="TMi-ff-cMZ"/>
-                                        </connections>
-                                    </menuItem>
-                                    <menuItem title="Flush fake-ip cache" id="WZT-AH-ria">
-                                        <modifierMask key="keyEquivalentModifierMask"/>
-                                        <connections>
-                                            <action selector="flushFakeipCache:" target="Voe-Tx-rLC" id="ghQ-ZK-r9u"/>
-                                        </connections>
-                                    </menuItem>
-                                    <menuItem title="Proxy providers" id="4Jz-gx-7X9">
-                                        <modifierMask key="keyEquivalentModifierMask"/>
-                                        <menu key="submenu" title="Proxy providers" id="PXU-hU-r0O"/>
-                                    </menuItem>
-                                    <menuItem title="Rule providers" id="cJg-BS-yk2">
-                                        <modifierMask key="keyEquivalentModifierMask"/>
-                                        <menu key="submenu" title="Rule providers" id="wiW-XY-cyg"/>
-                                    </menuItem>
-                                    <menuItem isSeparatorItem="YES" id="mmr-bS-73Y"/>
-                                    <menuItem title="Alpha Core" id="WNb-4C-MWu">
-                                        <modifierMask key="keyEquivalentModifierMask"/>
-                                        <menu key="submenu" title="Alpha Core" autoenablesItems="NO" id="JYf-zC-xoj">
-                                            <items>
-                                                <menuItem title="Use alpha meta" id="sk5-MZ-XB1">
-                                                    <modifierMask key="keyEquivalentModifierMask"/>
-                                                    <connections>
-                                                        <action selector="useAlphaMeta:" target="Voe-Tx-rLC" id="RkO-tr-1sq"/>
-                                                    </connections>
-                                                </menuItem>
-                                                <menuItem title="Requires restart  ⚠️" enabled="NO" id="u64-fu-xPW">
-                                                    <modifierMask key="keyEquivalentModifierMask"/>
-                                                </menuItem>
-                                                <menuItem isSeparatorItem="YES" id="GYy-fK-D1G"/>
-                                                <menuItem title="Version: none" id="Stq-Vy-QaD">
-                                                    <modifierMask key="keyEquivalentModifierMask"/>
-                                                    <connections>
-                                                        <action selector="showAlphaInFinder:" target="Voe-Tx-rLC" id="vFS-HH-EV6"/>
-                                                    </connections>
-                                                </menuItem>
-                                                <menuItem title="Download or update" id="MWh-yg-3Yk">
-                                                    <modifierMask key="keyEquivalentModifierMask"/>
-                                                    <connections>
-                                                        <action selector="updateAlphaMeta:" target="Voe-Tx-rLC" id="hgd-A7-HbD"/>
-                                                    </connections>
-                                                </menuItem>
-                                            </items>
-                                        </menu>
-                                    </menuItem>
-                                    <menuItem title="Hide unselectable" id="C3l-5G-vzB">
-                                        <modifierMask key="keyEquivalentModifierMask"/>
-                                        <connections>
-                                            <action selector="hideUnselectable:" target="Voe-Tx-rLC" id="ifq-SY-ov8"/>
-                                        </connections>
                                     </menuItem>
                                 </items>
                             </menu>

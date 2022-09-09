@@ -78,8 +78,6 @@ class ConfigManager {
 
     var isProxySetByOtherVariable = BehaviorRelay<Bool>(value: false)
 
-    var isTunModeVariable = BehaviorRelay<Bool>(value: false)
-
     var showNetSpeedIndicator: Bool {
         get {
             return UserDefaults.standard.bool(forKey: "showNetSpeedIndicator")

@@ -50,20 +50,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     @IBOutlet var experimentalMenu: NSMenu!
     @IBOutlet var externalControlSeparator: NSMenuItem!
 
-    @IBOutlet var tunModeMenuItem: NSMenuItem!
-
-    @IBOutlet var hideUnselecableMenuItem: NSMenuItem!
-    @IBOutlet var proxyProvidersMenu: NSMenu!
-    @IBOutlet var ruleProvidersMenu: NSMenu!
-    @IBOutlet var proxyProvidersMenuItem: NSMenuItem!
-    @IBOutlet var ruleProvidersMenuItem: NSMenuItem!
-    @IBOutlet var snifferMenuItem: NSMenuItem!
-    @IBOutlet var flushFakeipCacheMenuItem: NSMenuItem!
-
-    @IBOutlet var useAlphaMetaMenuItem: NSMenuItem!
-    @IBOutlet var alphaMetaVersionMenuItem: NSMenuItem!
-    @IBOutlet var updateAlphaMetaMenuItem: NSMenuItem!
-
     var disposeBag = DisposeBag()
     var statusItemView: StatusItemView!
     var isSpeedTesting = false
@@ -217,9 +203,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             }).disposed(by: disposeBag)
 
         remoteConfigAutoupdateMenuItem.state = RemoteConfigManager.autoUpdateEnable ? .on : .off
-
-        hideUnselecableMenuItem.state = .init(rawValue: MenuItemFactory.hideUnselectable)
-        useAlphaMetaMenuItem.state = MenuItemFactory.useAlphaCore ? .on : .off
     }
 
     func setupData() {
@@ -246,7 +229,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
         Observable
             .merge([ConfigManager.shared.proxyPortAutoSetObservable,
-                    ConfigManager.shared.isTunModeVariable.asObservable(),
                     ConfigManager.shared.isProxySetByOtherVariable.asObservable()])
             .map { _ -> Bool in
                 var status = NSControl.StateValue.mixed
@@ -255,7 +237,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
                 } else {
                     status = ConfigManager.shared.proxyPortAutoSet ? .on : .off
                 }
-                return status == .on || ConfigManager.shared.isTunModeVariable.value
+                return status == .on
             }.distinctUntilChanged()
             .bind { [weak self] enable in
                 guard let self = self else { return }
@@ -297,10 +279,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
                 if RemoteControlManager.selectConfig == nil {
                     ClashStatusTool.checkPortConfig(cfg: config)
                 }
-
-                self.snifferMenuItem.state = config.sniffing ? .on : .off
-                self.tunModeMenuItem.state = config.tun.enable ? .on : .off
-                ConfigManager.shared.isTunModeVariable.accept(config.tun.enable)
             }.disposed(by: disposeBag)
 
         if !PrivilegedHelperManager.shared.isHelperCheckFinished.value {
@@ -1080,56 +1058,7 @@ extension AppDelegate {
 
 // MARK: Meta Menu
 
-extension AppDelegate {
-    @IBAction func tunMode(_ sender: NSMenuItem) {
-        let nc = NSUserNotificationCenter.default
-        guard let config = ApiRequest.shared.currentConfigContent else {
-            nc.post(title: "Tun Mode", info: NSLocalizedString("Not found current config.", comment: ""))
-            return
-        }
-
-        sender.isEnabled = false
-        ApiRequest.requestConfig {
-            guard let path = ClashMetaConfig.updateConfigTun(config, enable: !$0.tun.enable) else {
-                sender.isEnabled = true
-                nc.post(title: "Tun Mode", info: NSLocalizedString("Decode current config failed.", comment: ""))
-                return
-            }
-
-            ApiRequest.requestConfigUpdate(configPath: path) { err in
-                if let error = err {
-                    nc.postNotificationAlert(title: NSLocalizedString("Reload Config Fail", comment: ""),
-                              info: error)
-                } else {
-                    self.syncConfig()
-                    self.resetStreamApi()
-                    self.selectProxyGroupWithMemory()
-                    self.selectOutBoundModeWithMenory()
-                    MenuItemFactory.recreateProxyMenuItems()
-                    NotificationCenter.default.post(name: .reloadDashboard, object: nil)
-                }
-                sender.isEnabled = true
-            }
-        }
-    }
-
-    @IBAction func hideUnselectable(_ sender: NSMenuItem) {
-        var newState = NSControl.StateValue.off
-        switch sender.state {
-        case .off:
-            newState = .mixed
-        case .mixed:
-            newState = .on
-        case .on:
-            newState = .off
-        default:
-            return
-        }
-
-        sender.state = newState
-        MenuItemFactory.hideUnselectable = newState.rawValue
-    }
-
+ extension AppDelegate {
     @IBAction func checkForUpdate(_ sender: NSMenuItem) {
         let unc = NSUserNotificationCenter.default
         AF.request("https://api.github.com/repos/MetaCubeX/ClashX.Meta/releases/latest").responseString {
@@ -1154,154 +1083,7 @@ extension AppDelegate {
         }
     }
 
-    @IBAction func updateGEO(_ sender: NSMenuItem) {
-        ApiRequest.updateGEO { _ in
-            NSUserNotificationCenter.default.post(title: NSLocalizedString("Updating GEO Databases...", comment: ""), info: NSLocalizedString("Good luck to you  🙃", comment: ""))
-        }
-    }
-
-    @IBAction func flushFakeipCache(_ sender: NSMenuItem) {
-        ApiRequest.flushFakeipCache {
-            NSUserNotificationCenter.default.post(title: NSLocalizedString("Flush fake-ip cache", comment: ""), info: $0 ? "Success" : "Failed")
-        }
-    }
-
-    @IBAction func updateSniffing(_ sender: NSMenuItem) {
-        let enable = sender.state != .on
-        ApiRequest.updateSniffing(enable: enable) {
-            sender.state = enable ? .on : .off
-        }
-    }
-
-    @IBAction func useAlphaMeta(_ sender: NSMenuItem) {
-        if UserDefaults.standard.object(forKey: "useAlphaCore") as? Bool == nil {
-            let alert = NSAlert()
-            alert.messageText = NSLocalizedString("Alpha Meta core Warning", comment: "")
-            alert.alertStyle = .warning
-            alert.addButton(withTitle: NSLocalizedString("Continue", comment: ""))
-            alert.addButton(withTitle: NSLocalizedString("Cancel", comment: ""))
-            if alert.runModal() != .alertFirstButtonReturn {
-                return
-            }
-        }
-
-        let use = sender.state != .on
-        MenuItemFactory.useAlphaCore = use
-        sender.state = use ? .on : .off
-    }
-
-    @IBAction func showAlphaInFinder(_ sender: NSMenuItem) {
-        guard let u = Paths.alphaCorePath(),
-              FileManager.default.fileExists(atPath: u.path) else { return }
-        NSWorkspace.shared.activateFileViewerSelecting([u])
-    }
-
-    @IBAction func updateAlphaMeta(_ sender: NSMenuItem) {
-        guard let helperURL = Paths.alphaCorePath() else {
-            return
-        }
-        sender.isEnabled = false
-        struct ReleasesResp: Decodable {
-            let assets: [Asset]
-            struct Asset: Decodable {
-                let name: String
-                let downloadUrl: String
-                let contentType: String
-                let state: String
-
-                enum CodingKeys: String, CodingKey {
-                    case name,
-                         state,
-                         downloadUrl = "browser_download_url",
-                         contentType = "content_type"
-                }
-            }
-        }
-
-        func GetMachineHardwareName() -> String? {
-            var sysInfo = utsname()
-            let retVal = uname(&sysInfo)
-
-            guard retVal == EXIT_SUCCESS else { return nil }
-
-            return String(cString: &sysInfo.machine.0, encoding: .utf8)
-        }
-
-        let assetName: String? = {
-            switch GetMachineHardwareName() {
-            case "x86_64":
-                return "darwin-amd64"
-            case "arm64":
-                return "darwin-arm64"
-            default:
-                return nil
-            }
-        }()
-        let fm = FileManager.default
-
-        func dlResult(_ info: String) {
-            sender.isEnabled = true
-            NSUserNotificationCenter.default.post(title: "Clash Meta Core", info: info)
-        }
-
-        AF.request("https://api.github.com/repos/MetaCubeX/Clash.Meta/releases/tags/Prerelease-Alpha").responseDecodable(of: ReleasesResp.self) {
-            guard let assets = $0.value?.assets,
-                  let assetName = assetName,
-                  let asset = assets.first(where: {
-                      $0.name.contains(assetName) &&
-                      $0.state == "uploaded" &&
-                      $0.contentType == "application/gzip"
-                  }) else {
-                dlResult("Decode alpha release info failed")
-                return
-            }
-
-            if let v = self.testMetaCore(helperURL.path),
-               asset.name.contains(v.version) {
-                dlResult("Not found update")
-                return
-            }
-
-            self.updateAlphaVersion(nil)
-            try? fm.removeItem(at: helperURL)
-
-            AF.download(asset.downloadUrl).response {
-                guard let gzPath = $0.fileURL?.path,
-                      let contentData = fm.contents(atPath: gzPath)
-                else {
-                    dlResult("Download file failed")
-                    return
-                }
-                do {
-                    try fm.createDirectory(at: helperURL.deletingLastPathComponent(), withIntermediateDirectories: true, attributes: nil)
-                    try contentData.gunzipped().write(to: helperURL)
-                    guard let version = self.testMetaCore(helperURL.path)?.version else {
-                        dlResult("Test downloaded file failed")
-                        return
-                    }
-                    self.updateAlphaVersion(version)
-                    dlResult(NSLocalizedString("Version: ", comment: "") + version)
-                } catch let error {
-                    dlResult("Something error \(error.localizedDescription)")
-                }
-            }
-        }
-    }
-
-    func updateAlphaVersion(_ version: String?) {
-        let enable = version != nil
-        useAlphaMetaMenuItem.isEnabled = enable
-        alphaMetaVersionMenuItem.isEnabled = enable
-        if let v = version {
-            let info = NSLocalizedString("Version: ", comment: "") + v
-            alphaMetaVersionMenuItem.title = info
-            updateAlphaMetaMenuItem.title = NSLocalizedString("Update Alpha Meta core", comment: "")
-        } else {
-            alphaMetaVersionMenuItem.title = NSLocalizedString("Version: ", comment: "") + "none"
-            updateAlphaMetaMenuItem.title = NSLocalizedString("Download Meta core", comment: "")
-        }
-    }
-}
+ }
 
 // MARK: crash hanlder
 

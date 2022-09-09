@@ -19,21 +19,6 @@ class MenuItemFactory {
         }
     }
 
-    static var hideUnselectable: Int = UserDefaults.standard.object(forKey: "hideUnselectable") as? Int ?? NSControl.StateValue.off.rawValue {
-        didSet {
-            UserDefaults.standard.set(hideUnselectable, forKey: "hideUnselectable")
-            recreateProxyMenuItems()
-        }
-    }
-
-    static var useAlphaCore: Bool = UserDefaults.standard.object(forKey: "useAlphaCore") as? Bool ?? false {
-        didSet {
-            UserDefaults.standard.set(useAlphaCore, forKey: "useAlphaCore")
-        }
-    }
-
-    static let updateAllProvidersTitle = NSLocalizedString("Update All Providers", comment: "")
-
     // MARK: - Public
 
     static func refreshExistingMenuItems() {
@@ -59,17 +44,9 @@ class MenuItemFactory {
         }
     }
 
-    static func recreateRuleProvidersMenuItems() {
-        ApiRequest.requestRuleProviderList {
-            refreshRuleProviderMenuItems($0.allProviders.map({ $0.value }))
-        }
-    }
-
     static func refreshMenuItems(mergedData proxyInfo: ClashProxyResp?) {
         let leftPadding = AppDelegate.shared.hasMenuSelected()
         guard let proxyInfo = proxyInfo else { return }
-
-        let hideState = NSControl.StateValue(rawValue: hideUnselectable)
 
         var menuItems = [NSMenuItem]()
         var collapsedItems = [NSMenuItem]()
@@ -90,32 +67,12 @@ class MenuItemFactory {
                 continue
             }
 
-            switch hideState {
-            case .mixed where [.urltest, .fallback, .loadBalance, .relay].contains(proxy.type):
-                collapsedItems.append(menu)
-                menu.isEnabled = true
-            case .on where [.urltest, .fallback, .loadBalance, .relay].contains(proxy.type):
-                continue
-            default:
-                menuItems.append(menu)
-                menu.isEnabled = true
-            }
-        }
-
-        if hideState == .mixed {
-            let collapsedItem = NSMenuItem(title: "Collapsed", action: nil, keyEquivalent: "")
-            collapsedItem.isEnabled = true
-            collapsedItem.submenu = .init(title: "")
-            collapsedItem.submenu?.items = collapsedItems
-
-            menuItems.append(collapsedItem)
+            menuItems.append(menu)
+            menu.isEnabled = true
         }
 
         let items = Array(menuItems.reversed())
         updateProxyList(withMenus: items)
-
-        refreshProxyProviderMenuItems(mergedData: proxyInfo)
-        recreateRuleProvidersMenuItems()
     }
 
     static func generateSwitchConfigMenuItems(complete: @escaping (([NSMenuItem]) -> Void)) {
@@ -298,140 +255,6 @@ extension MenuItemFactory {
         useViewToRenderProxy = !useViewToRenderProxy
         updateUseViewRenderMenuItem(sender)
         recreateProxyMenuItems()
-    }
-}
-
-// MARK: - Meta
-
-extension MenuItemFactory {
-
-    static func refreshProxyProviderMenuItems(mergedData proxyInfo: ClashProxyResp?) {
-        let app = AppDelegate.shared
-        guard let proxyInfo = proxyInfo,
-              let menu = app.proxyProvidersMenu,
-              let providers = proxyInfo.enclosingProviderResp
-        else { return }
-
-        let proxyProviders = providers.allProviders.filter {
-            $0.value.vehicleType == .HTTP
-        }.values.sorted(by: { $0.name < $1.name })
-
-        let isEmpty = proxyProviders.count == 0
-        app.proxyProvidersMenuItem.isEnabled = !isEmpty
-        guard !isEmpty else { return }
-
-        initUpdateAllProvidersMenuItem(for: menu, type: .proxy)
-        let maxNameLength = maxProvidersLength(for: proxyProviders.map({ $0.name }))
-        proxyProviders.forEach { provider in
-            let item = DualTitleMenuItem(
-                provider.name,
-                subTitle: providerUpdateTitle(provider.updatedAt),
-                action: #selector(actionUpdateSelectProvider),
-                maxLength: maxNameLength)
-            item.tag = ApiRequest.ProviderType.proxy.rawValue
-            item.target = self
-            menu.addItem(item)
-        }
-    }
-
-    static func refreshRuleProviderMenuItems(_ ruleProviders: [ClashRuleProvider]) {
-        let app = AppDelegate.shared
-        let isEmpty = ruleProviders.count == 0
-        app.ruleProvidersMenuItem.isEnabled = !isEmpty
-
-        guard !isEmpty,
-              let menu = app.ruleProvidersMenu
-        else { return }
-
-        initUpdateAllProvidersMenuItem(for: menu, type: .rule)
-        let maxNameLength = maxProvidersLength(for: ruleProviders.map({ $0.name }))
-        ruleProviders.sorted(by: { $0.name < $1.name })
-            .forEach { provider in
-                let item = DualTitleMenuItem(
-                    provider.name,
-                    subTitle: providerUpdateTitle(provider.updatedAt),
-                    action: #selector(actionUpdateSelectProvider),
-                    maxLength: maxNameLength)
-                item.tag = ApiRequest.ProviderType.rule.rawValue
-                item.target = self
-                menu.addItem(item)
-            }
-    }
-
-    static func initUpdateAllProvidersMenuItem(for menu: NSMenu, type: ApiRequest.ProviderType) {
-        if menu.items.count > 1 {
-            menu.items.enumerated().filter {
-                $0.offset > 1
-            }.forEach {
-                menu.removeItem($0.element)
-            }
-        } else {
-            let updateAllItem = NSMenuItem(title: updateAllProvidersTitle, action: #selector(actionUpdateAllProviders), keyEquivalent: "")
-            updateAllItem.tag = type.rawValue
-            updateAllItem.target = self
-            menu.addItem(updateAllItem)
-            menu.addItem(.separator())
-        }
-    }
-
-    static func maxProvidersLength(for names: [String]) -> CGFloat {
-        func getLength(_ string: String) -> CGFloat {
-            let rect = CGSize(width: CGFloat.greatestFiniteMagnitude, height: 20)
-            let attr = [NSAttributedString.Key.font: NSFont.menuBarFont(ofSize: 14)]
-            let length = (string as NSString)
-                .boundingRect(with: rect,
-                              options: .usesLineFragmentOrigin,
-                              attributes: attr).width
-            return length
-        }
-
-        var lengths = names.map {
-            getLength($0) + 65
-        }
-        lengths.append(getLength(updateAllProvidersTitle))
-        return lengths.max() ?? 0
-    }
-
-    static func providerUpdateTitle(_ updatedAt: String?) -> String? {
-        let dateCF = DateComponentsFormatter()
-        dateCF.allowedUnits = [.day, .hour, .minute]
-        dateCF.maximumUnitCount = 1
-        dateCF.unitsStyle = .abbreviated
-        dateCF.zeroFormattingBehavior = .dropAll
-
-        guard let dateStr = updatedAt,
-              let date = DateFormatter.provider.date(from: dateStr),
-              !date.timeIntervalSinceNow.isNaN,
-              !date.timeIntervalSinceNow.isInfinite,
-              let re = dateCF.string(from: abs(date.timeIntervalSinceNow)) else { return nil }
-
-        return re + NSLocalizedString(" ago", comment: "Provider update time title")
-    }
-
-    @objc static func actionUpdateAllProviders(sender: NSMenuItem) {
-        let type = ApiRequest.ProviderType(rawValue: sender.tag)!
-        let s = "Update All \(type.logString()) Providers"
-        Logger.log(s)
-        ApiRequest.updateAllProviders(for: type) {
-            Logger.log("\(s) \($0) failed")
-            let info = $0 == 0 ? "Success" : "\($0) failed"
-            NSUserNotificationCenter.default.post(title: s, info: info)
-            recreateProxyMenuItems()
-        }
-    }
-
-    @objc static func actionUpdateSelectProvider(sender: DualTitleMenuItem) {
-        let name = sender.originTitle
-        let type = ApiRequest.ProviderType(rawValue: sender.tag)!
-
-        let log = "Update \(type.logString()) Provider \(name)"
-        Logger.log(log)
-        ApiRequest.updateProvider(for: type, name: name) {
-            let info = $0 ? "Success" : "Failed"
-            Logger.log("\(log) info")
-            NSUserNotificationCenter.default.post(title: log, info: info)
-            recreateProxyMenuItems()
-        }
     }
 }
 
