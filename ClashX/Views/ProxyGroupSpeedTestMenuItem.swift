@@ -15,9 +15,7 @@ class ProxyGroupSpeedTestMenuItem: NSMenuItem {
 
     init(group: ClashProxy) {
         proxyGroup = group
-        if group.type.isAutoGroup {
-            testType = .reTest
-        } else if group.type == .select {
+        if [.select, .fallback].contains(group.type) {
             testType = .benchmark
         } else {
             testType = .unknown

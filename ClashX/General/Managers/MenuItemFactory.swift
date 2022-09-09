@@ -54,8 +54,8 @@ class MenuItemFactory {
         for proxy in proxyInfo.proxyGroups {
             var menu: NSMenuItem?
             switch proxy.type {
-            case .select: menu = generateSelectorMenuItem(proxyGroup: proxy, proxyInfo: proxyInfo, leftPadding: leftPadding)
-            case .urltest, .fallback: menu = generateUrlTestFallBackMenuItem(proxyGroup: proxy, proxyInfo: proxyInfo, leftPadding: leftPadding)
+            case .select, .fallback: menu = generateSelectorMenuItem(proxyGroup: proxy, proxyInfo: proxyInfo, leftPadding: leftPadding)
+            case .urltest: menu = generateUrlTestFallBackMenuItem(proxyGroup: proxy, proxyInfo: proxyInfo, leftPadding: leftPadding)
             case .loadBalance:
                 menu = generateLoadBalanceMenuItem(proxyGroup: proxy, proxyInfo: proxyInfo, leftPadding: leftPadding)
             case .relay:
@@ -122,10 +122,10 @@ class MenuItemFactory {
                                                  leftPadding: Bool) -> NSMenuItem? {
         let proxyMap = proxyInfo.proxiesMap
 
-        let isGlobalMode = ConfigManager.shared.currentConfig?.mode == .global
-        if !isGlobalMode {
-            if proxyGroup.name == "GLOBAL" { return nil }
-        }
+//        let isGlobalMode = ConfigManager.shared.currentConfig?.mode == .global
+//        if !isGlobalMode {
+//            if proxyGroup.name == "GLOBAL" { return nil }
+//        }
 
         let menu = NSMenuItem(title: proxyGroup.name, action: nil, keyEquivalent: "")
         let selectedName = proxyGroup.now ?? ""
