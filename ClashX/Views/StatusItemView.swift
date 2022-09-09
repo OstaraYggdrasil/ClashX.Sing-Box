@@ -25,7 +25,7 @@ class StatusItemView: NSView {
         if let image = NSImage(contentsOfFile: customImagePath) {
             return image
         }
-        if let imagePath = Bundle.main.path(forResource: "menu_icon", ofType: "icns"),
+        if let imagePath = Bundle.main.path(forResource: "menu_icon", ofType: "png"),
            let image = NSImage(contentsOfFile: imagePath) {
             return image
         }

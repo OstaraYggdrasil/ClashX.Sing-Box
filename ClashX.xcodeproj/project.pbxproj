@@ -15,6 +15,7 @@
 		019A239628657A7A00AE5698 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 019A239528657A7A00AE5698 /* main.swift */; };
 		01B009AE2854533300B93618 /* geoip.db.gz in Resources */ = {isa = PBXBuildFile; fileRef = 01B009AC2854533200B93618 /* geoip.db.gz */; };
 		01B009AF2854533300B93618 /* geosite.db.gz in Resources */ = {isa = PBXBuildFile; fileRef = 01B009AD2854533300B93618 /* geosite.db.gz */; };
+		01BFF3C128CB9D6D006CE3F2 /* menu_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 01BFF3C028CB9D6D006CE3F2 /* menu_icon.png */; };
 		4913C82321157D0200F6B87C /* Notification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4913C82221157D0200F6B87C /* Notification.swift */; };
 		491E6203258A424D00313AEF /* CommonUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 491E61FD258A424500313AEF /* CommonUtils.m */; };
 		49228457270AADE20027A4B6 /* RemoteConfigUpdateIntervalSettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49228456270AADE20027A4B6 /* RemoteConfigUpdateIntervalSettingView.swift */; };
@@ -69,7 +70,6 @@
 		49D176A72355FE680093DD7B /* NetworkChangeNotifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49D176A62355FE680093DD7B /* NetworkChangeNotifier.swift */; };
 		49D176A9235614340093DD7B /* ProxyGroupSpeedTestMenuItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49D176A8235614340093DD7B /* ProxyGroupSpeedTestMenuItem.swift */; };
 		49D176AB23575BB20093DD7B /* ProxyGroupMenuItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49D176AA23575BB20093DD7B /* ProxyGroupMenuItemView.swift */; };
-		6AB113B928AF9D6800F46261 /* menu_icon.icns in Resources */ = {isa = PBXBuildFile; fileRef = 6AB113B828AF9D6800F46261 /* menu_icon.icns */; };
 		8A2BBEA727A03ACB0081EBEF /* ProxySetting.sdef in Resources */ = {isa = PBXBuildFile; fileRef = 8A2BBEA627A03ACB0081EBEF /* ProxySetting.sdef */; };
 		8ACD21BB27A04C7800BC4632 /* ProxySettingCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ACD21BA27A04C7800BC4632 /* ProxySettingCommand.swift */; };
 		8ACD21BD27A04ED500BC4632 /* ProxyModeChangeCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ACD21BC27A04ED500BC4632 /* ProxyModeChangeCommand.swift */; };
@@ -139,6 +139,7 @@
 		019A239528657A7A00AE5698 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		01B009AC2854533200B93618 /* geoip.db.gz */ = {isa = PBXFileReference; lastKnownFileType = archive.gzip; path = geoip.db.gz; sourceTree = "<group>"; };
 		01B009AD2854533300B93618 /* geosite.db.gz */ = {isa = PBXFileReference; lastKnownFileType = archive.gzip; path = geosite.db.gz; sourceTree = "<group>"; };
+		01BFF3C028CB9D6D006CE3F2 /* menu_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = menu_icon.png; sourceTree = "<group>"; };
 		2E8EB5156E7A0F1F70D821BF /* libPods-Sing-Box.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Sing-Box.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		34184AD8AF8EDFBFCBA16857 /* Pods-Sing-Box.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Sing-Box.release.xcconfig"; path = "Pods/Target Support Files/Pods-Sing-Box/Pods-Sing-Box.release.xcconfig"; sourceTree = "<group>"; };
 		3F86DA2DA3CC14731BE1ABF7 /* Pods-ClashX Meta.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ClashX Meta.release.xcconfig"; path = "Pods/Target Support Files/Pods-ClashX Meta/Pods-ClashX Meta.release.xcconfig"; sourceTree = "<group>"; };
@@ -208,7 +209,6 @@
 		49D8276627E9B01700159D93 /* LoginKitWrapper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LoginKitWrapper.h; sourceTree = "<group>"; };
 		49D8276727E9B01700159D93 /* LoginKitWrapper.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LoginKitWrapper.m; sourceTree = "<group>"; };
 		5217C006C5A22A1CEA24BFC1 /* Pods-ClashX.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ClashX.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ClashX/Pods-ClashX.debug.xcconfig"; sourceTree = "<group>"; };
-		6AB113B828AF9D6800F46261 /* menu_icon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = menu_icon.icns; sourceTree = "<group>"; };
 		8A2BBEA627A03ACB0081EBEF /* ProxySetting.sdef */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = ProxySetting.sdef; sourceTree = "<group>"; };
 		8ACD21BA27A04C7800BC4632 /* ProxySettingCommand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProxySettingCommand.swift; sourceTree = "<group>"; };
 		8ACD21BC27A04ED500BC4632 /* ProxyModeChangeCommand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProxyModeChangeCommand.swift; sourceTree = "<group>"; };
@@ -391,7 +391,7 @@
 		49761DA521C9490400AE13EF /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				6AB113B828AF9D6800F46261 /* menu_icon.icns */,
+				01BFF3C028CB9D6D006CE3F2 /* menu_icon.png */,
 				01B009AC2854533200B93618 /* geoip.db.gz */,
 				01B009AD2854533300B93618 /* geosite.db.gz */,
 				49761DA621C9497000AE13EF /* dashboard */,
@@ -630,7 +630,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6AB113B928AF9D6800F46261 /* menu_icon.icns in Resources */,
+				01BFF3C128CB9D6D006CE3F2 /* menu_icon.png in Resources */,
 				01B009AF2854533300B93618 /* geosite.db.gz in Resources */,
 				49761DA721C9497000AE13EF /* dashboard in Resources */,
 				4981C88B216BAE4A008CC14A /* Localizable.strings in Resources */,
