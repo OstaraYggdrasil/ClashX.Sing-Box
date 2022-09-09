@@ -425,58 +425,10 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
     func initMetaCore() {
         Logger.log("initClashCore")
-
-        let corePath: String = {
-            if let path = Paths.alphaCorePath()?.path,
-               let v = testMetaCore(path) {
-                updateAlphaVersion(v.version)
-                if MenuItemFactory.useAlphaCore {
-                    return path
-                }
-            } else {
-                updateAlphaVersion(nil)
-            }
-
-            if Paths.defaultCorePath() == nil {
-                if let p = Paths.defaultCoreGzPath(),
-                   let data = try? Data(contentsOf: .init(fileURLWithPath: p)).gunzipped(),
-                   var path = Bundle.main.resourcePath {
-                    path += "/\(kDefauleMetaCoreName)"
-                    do {
-                        try data.write(to: URL(fileURLWithPath: path))
-                    } catch let error {
-                        Logger.log("\(error)", level: .error)
-                        return "ERROR"
-                    }
-                } else {
-                    return "ERROR"
-                }
-            }
-
-            if let path = Paths.defaultCorePath(),
-               testMetaCore(path) != nil,
-               validateDefaultCore() {
-                return path
-            } else {
-                return "ERROR"
-            }
-        }()
-
-        if corePath == "ERROR" {
-            let alert = NSAlert()
-            alert.messageText = "Failure to verify the internal Meta Core.\nDo NOT replace core file in the resources folder."
-            alert.alertStyle = .warning
-            alert.addButton(withTitle: NSLocalizedString("Quit", comment: ""))
-            alert.runModal()
-
-            DispatchQueue.main.async {
-                NSApplication.shared.terminate(nil)
-            }
-        } else {
-            RemoteConfigManager.shared.verifyConfigTask.setLaunchPath(corePath)
-            PrivilegedHelperManager.shared.helper()?.initMetaCore(withPath: corePath)
-            Logger.log("initClashCore finish")
-        }
+        let corePath = "\(NSHomeDirectory())/go/bin/sing-box"
+        RemoteConfigManager.shared.verifyConfigTask.setLaunchPath(corePath)
+        PrivilegedHelperManager.shared.helper()?.initMetaCore(withPath: corePath)
+        Logger.log("initClashCore finish")
     }
 
     func testMetaCore(_ path: String) -> (version: String, date: Date?)? {
@@ -721,9 +673,15 @@ extension AppDelegate {
             ConfigManager.shared.isRunning = true
             self.proxyModeMenuItem.isEnabled = true
             self.dashboardMenuItem.isEnabled = true
-        }.then { _ in
-            self.pushInitConfig()
-        }.done {
+        }.done { _ in
+            self.syncConfig()
+            self.resetStreamApi()
+            self.runAfterConfigReload?()
+            self.runAfterConfigReload = nil
+            self.selectProxyGroupWithMemory()
+            MenuItemFactory.recreateProxyMenuItems()
+            NotificationCenter.default.post(name: .reloadDashboard, object: nil)
+
             Logger.log("Init config file success.")
         }.catch { error in
             ConfigManager.shared.isRunning = false
@@ -787,26 +745,36 @@ extension AppDelegate {
         }
     }
 
-    func generateInitConfig() -> Promise<ClashMetaConfig.Config> {
+    func generateInitConfig() -> Promise<JSON> {
         Promise { resolver in
             ClashMetaConfig.generateInitConfig {
-                var config = $0
+                guard let json = $0 else {
+                    resolver.reject(StartMetaError.configMissing)
+                    return
+                }
                 PrivilegedHelperManager.shared.helper {
                     resolver.reject(StartMetaError.helperNotFound)
                 }?.getUsedPorts {
-                    config.updatePorts($0 ?? "")
-                    resolver.fulfill(config)
+                    let json = ClashMetaConfig.updatePorts(json, usedPorts: $0 ?? "")
+                    resolver.fulfill(json)
                 }
             }
         }
     }
 
-    func startMeta(_ config: ClashMetaConfig.Config) -> Promise<StartProxyResp> {
+    func startMeta(_ config: JSON) -> Promise<StartProxyResp> {
         .init { resolver in
+
+            guard let string = config.rawString() else {
+                resolver.reject(StartMetaError.configMissing)
+                return
+            }
+
+            let path = RemoteConfigManager.createCacheConfig(string: string)
             PrivilegedHelperManager.shared.helper {
                 resolver.reject(StartMetaError.helperNotFound)
             }?.startMeta(withConfPath: kConfigFolderPath,
-                         confFilePath: config.path) {
+                         confFilePath: path) {
                 if let string = $0 {
                     guard let jsonData = string.data(using: .utf8),
                           let res = try? JSONDecoder().decode(StartProxyResp.self, from: jsonData) else {
