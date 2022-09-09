@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "1100"
+   LastUpgradeVersion = "1340"
    version = "1.3">
    <BuildAction
       parallelizeBuildables = "YES"
@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "F9A7C0682306E874007163C7"
-               BuildableName = "com.metacubex.ClashX.ProxyConfigHelper"
+               BuildableName = "com.SagerNet.Sing-Box.ProxyConfigHelper"
                BlueprintName = "com.SagerNet.Sing-Box.ProxyConfigHelper"
                ReferencedContainer = "container:ClashX.xcodeproj">
             </BuildableReference>
@@ -46,7 +46,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "F9A7C0682306E874007163C7"
-            BuildableName = "com.metacubex.ClashX.ProxyConfigHelper"
+            BuildableName = "com.SagerNet.Sing-Box.ProxyConfigHelper"
             BlueprintName = "com.SagerNet.Sing-Box.ProxyConfigHelper"
             ReferencedContainer = "container:ClashX.xcodeproj">
          </BuildableReference>
@@ -63,7 +63,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "F9A7C0682306E874007163C7"
-            BuildableName = "com.metacubex.ClashX.ProxyConfigHelper"
+            BuildableName = "com.SagerNet.Sing-Box.ProxyConfigHelper"
             BlueprintName = "com.SagerNet.Sing-Box.ProxyConfigHelper"
             ReferencedContainer = "container:ClashX.xcodeproj">
          </BuildableReference>

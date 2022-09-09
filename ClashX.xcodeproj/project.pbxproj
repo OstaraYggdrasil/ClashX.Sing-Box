@@ -195,7 +195,7 @@
 		49BB31E6246853EA008A4CB0 /* ICloudManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ICloudManager.swift; sourceTree = "<group>"; };
 		49BC061B212931F4005A0FE7 /* AboutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutViewController.swift; sourceTree = "<group>"; };
 		49C9EF63223E78F5005D8B6A /* ClashProxy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClashProxy.swift; sourceTree = "<group>"; };
-		49CF3B1D20CD7463001EBF94 /* ClashX Meta.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "ClashX Meta.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		49CF3B1D20CD7463001EBF94 /* Sing-Box.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Sing-Box.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		49CF3B2020CD7463001EBF94 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		49CF3B2720CD7465001EBF94 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		49CF3B2920CD7465001EBF94 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -441,7 +441,7 @@
 		49CF3B1E20CD7463001EBF94 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				49CF3B1D20CD7463001EBF94 /* ClashX Meta.app */,
+				49CF3B1D20CD7463001EBF94 /* Sing-Box.app */,
 				F9A7C0692306E874007163C7 /* com.SagerNet.Sing-Box.ProxyConfigHelper */,
 			);
 			name = Products;
@@ -541,9 +541,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		49CF3B1C20CD7463001EBF94 /* ClashX Meta */ = {
+		49CF3B1C20CD7463001EBF94 /* Sing-Box */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 49CF3B2D20CD7465001EBF94 /* Build configuration list for PBXNativeTarget "ClashX Meta" */;
+			buildConfigurationList = 49CF3B2D20CD7465001EBF94 /* Build configuration list for PBXNativeTarget "Sing-Box" */;
 			buildPhases = (
 				2FD76081F5FF64514C3E5C9D /* [CP] Check Pods Manifest.lock */,
 				49CF3B1920CD7463001EBF94 /* Sources */,
@@ -557,9 +557,9 @@
 			dependencies = (
 				F935B2EC2307B7CD009E4D33 /* PBXTargetDependency */,
 			);
-			name = "ClashX Meta";
+			name = "Sing-Box";
 			productName = ClashX;
-			productReference = 49CF3B1D20CD7463001EBF94 /* ClashX Meta.app */;
+			productReference = 49CF3B1D20CD7463001EBF94 /* Sing-Box.app */;
 			productType = "com.apple.product-type.application";
 		};
 		F9A7C0682306E874007163C7 /* com.SagerNet.Sing-Box.ProxyConfigHelper */ = {
@@ -621,7 +621,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				49CF3B1C20CD7463001EBF94 /* ClashX Meta */,
+				49CF3B1C20CD7463001EBF94 /* Sing-Box */,
 				F9A7C0682306E874007163C7 /* com.SagerNet.Sing-Box.ProxyConfigHelper */,
 			);
 		};
@@ -958,7 +958,7 @@
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.13;
 				MARKETING_VERSION = v1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.metacubex.ClashX.meta;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.SagerNet.Sing-Box";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				STRIP_INSTALLED_PRODUCT = NO;
@@ -1006,7 +1006,7 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.13;
 				MARKETING_VERSION = v1.0;
 				OTHER_CODE_SIGN_FLAGS = "--timestamp";
-				PRODUCT_BUNDLE_IDENTIFIER = com.metacubex.ClashX.meta;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.SagerNet.Sing-Box";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				STRIP_INSTALLED_PRODUCT = YES;
@@ -1111,7 +1111,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		49CF3B2D20CD7465001EBF94 /* Build configuration list for PBXNativeTarget "ClashX Meta" */ = {
+		49CF3B2D20CD7465001EBF94 /* Build configuration list for PBXNativeTarget "Sing-Box" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				49CF3B2E20CD7465001EBF94 /* Debug */,
