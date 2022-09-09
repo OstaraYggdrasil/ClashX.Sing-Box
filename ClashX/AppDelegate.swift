@@ -250,6 +250,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             .filter { _, new in return new != nil }
             .bind { [weak self] old, config in
                 guard let self = self, let config = config else { return }
+                /*
                 self.proxyModeDirectMenuItem.state = .off
                 self.proxyModeGlobalMenuItem.state = .off
                 self.proxyModeRuleMenuItem.state = .off
@@ -260,8 +261,10 @@ class AppDelegate: NSObject, NSApplicationDelegate {
                 case .rule: self.proxyModeRuleMenuItem.state = .on
                 }
                 self.allowFromLanMenuItem.state = config.allowLan ? .on : .off
+                 */
 
-                self.proxyModeMenuItem.title = "\(NSLocalizedString("Proxy Mode", comment: "")) (\(config.mode.name))"
+                self.proxyModeMenuItem.submenu = nil
+                self.proxyModeMenuItem.title = "Sing-Box"
 
                 if old?.usedHttpPort != config.usedHttpPort || old?.usedSocksPort != config.usedSocksPort {
                     Logger.log("port config updated,new: \(config.usedHttpPort),\(config.usedSocksPort)")
