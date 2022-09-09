@@ -159,7 +159,7 @@ extension ConfigManager {
         do {
             let fileURLs = try FileManager.default.contentsOfDirectory(atPath: kConfigFolderPath)
             return fileURLs
-                .filter { String($0.split(separator: ".").last ?? "") == "yaml" }
+                .filter { String($0.split(separator: ".").last ?? "") == "json" }
                 .map { $0.split(separator: ".").dropLast().joined(separator: ".") }
         } catch {
             return ["config"]

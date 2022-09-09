@@ -127,7 +127,7 @@
 - (NSArray<NSString *> *)getIgnoreList {
     NSString *homePath = [ProxySettingTool getUserHomePath];
     if (homePath.length > 0) {
-        NSString *configPath = [homePath stringByAppendingString:@"/.config/clash/proxyIgnoreList.plist"];
+        NSString *configPath = [homePath stringByAppendingString:@"/.config/sing-box/proxyIgnoreList.plist"];
         if ([NSFileManager.defaultManager fileExistsAtPath:configPath]) {
             NSArray *arr = [[NSArray alloc] initWithContentsOfFile:configPath];
             if (arr != nil && arr.count > 0) {

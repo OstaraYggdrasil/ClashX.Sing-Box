@@ -7,9 +7,9 @@
 //
 import Foundation
 
-let kConfigFolderPath = "\(NSHomeDirectory())/.config/clash/"
+let kConfigFolderPath = "\(NSHomeDirectory())/.config/sing-box/"
 
-let kDefaultConfigFilePath = "\(kConfigFolderPath)config.yaml"
+let kDefaultConfigFilePath = "\(kConfigFolderPath)config.json"
 
 let kDefauleMetaCoreName = "com.metacubex.ClashX.ProxyConfigHelper.meta"
 
@@ -19,7 +19,7 @@ struct Paths {
     }
 
     static func configFileName(for name: String) -> String {
-        return "\(name).yaml"
+        return "\(name).json"
     }
 
     static func defaultCorePath() -> String? {

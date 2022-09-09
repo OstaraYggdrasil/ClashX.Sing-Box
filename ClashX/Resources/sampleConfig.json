@@ -1,0 +1,31 @@
+{
+  "log": {
+    "disabled": true,
+    "level": "info",
+    "timestamp": false
+  },
+  "inbounds": [
+    {
+      "type": "tun",
+      "tag": "tun-in",
+      "inet4_address": "172.19.0.1/30",
+      "inet6_address": "fdfe:dcba:9876::1/127",
+      "auto_route": true,
+      "sniff": true
+    },
+    {
+      "type": "mixed",
+      "tag": "mixed-in",
+      "listen": "::",
+      "listen_port": 2080,
+      "set_system_proxy": true
+    }
+  ],
+  "experimental": {
+    "clash_api": {
+      "external_controller": "127.0.0.1:9090",
+      "external_ui": "",
+      "secret": ""
+    }
+  }
+}

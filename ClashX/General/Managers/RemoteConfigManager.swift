@@ -208,8 +208,8 @@ class RemoteConfigManager {
     }
 
     static func createCacheConfig(string: String) -> String? {
-        let path = NSTemporaryDirectory().appending("com.MetaCubeX.ClashX.meta") + "/cacheConfigs"
-        let confPath = path + "/\(UUID().uuidString).yaml"
+        let path = NSTemporaryDirectory().appending("com.SagerNet.Sing-Box") + "/cacheConfigs"
+        let confPath = path + "/\(UUID().uuidString).json"
 
         let fm = FileManager.default
         try? fm.createDirectory(atPath: path, withIntermediateDirectories: true)
