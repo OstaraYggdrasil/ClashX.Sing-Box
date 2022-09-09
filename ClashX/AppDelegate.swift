@@ -12,7 +12,6 @@ import LetsMove
 import RxCocoa
 import RxSwift
 import SwiftyJSON
-import Yams
 import PromiseKit
 
 private let statusItemLengthWithSpeed: CGFloat = 72

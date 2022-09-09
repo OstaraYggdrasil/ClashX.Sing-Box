@@ -15,7 +15,7 @@ post_install do |installer|
   end
 end
 
-target 'ClashX Meta' do
+target 'Sing-Box' do
   inhibit_all_warnings!
   use_modular_headers!
   pod 'LetsMove'
@@ -28,7 +28,6 @@ target 'ClashX Meta' do
   pod 'Starscream','3.1.1'
   pod "FlexibleDiff"
   pod 'GzipSwift'
-  pod 'Yams'
   pod "PromiseKit", "~> 6.8"
 end
 

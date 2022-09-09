@@ -22,7 +22,6 @@ PODS:
   - Starscream (3.1.1)
   - SwiftyJSON (5.0.1)
   - WebViewJavascriptBridge (6.0.3)
-  - Yams (5.0.0)
 
 DEPENDENCIES:
   - Alamofire (~> 5.0)
@@ -36,7 +35,6 @@ DEPENDENCIES:
   - Starscream (= 3.1.1)
   - SwiftyJSON
   - WebViewJavascriptBridge
-  - Yams
 
 SPEC REPOS:
   trunk:
@@ -52,7 +50,6 @@ SPEC REPOS:
     - Starscream
     - SwiftyJSON
     - WebViewJavascriptBridge
-    - Yams
 
 SPEC CHECKSUMS:
   Alamofire: 87bd8c952f9a4454320fce00d9cc3de57bcadaf5
@@ -67,8 +64,7 @@ SPEC CHECKSUMS:
   Starscream: 4bb2f9942274833f7b4d296a55504dcfc7edb7b0
   SwiftyJSON: 2f33a42c6fbc52764d96f13368585094bfd8aa5e
   WebViewJavascriptBridge: 7f5bc4d3581e672e8f32bd0f812d54bc69bb8e29
-  Yams: b5c3e188ceeb8321a9830b1d0e791ccea9af3201
 
-PODFILE CHECKSUM: 57cda85d5fd198c1d1f83f6a71b69a86b1884bb5
+PODFILE CHECKSUM: 1a48d9bfeff63406e254bcbc13fff46c43da074b
 
 COCOAPODS: 1.11.3

@@ -17,9 +17,8 @@ ClashX/clash/
 ClashX/goClash/goClash.h
 ClashX/goClash/goClash.a
 fastlane/report.xml
-ClashX/Resources/Country.mmdb.gz
-ClashX/Resources/geoip.dat.gz
-ClashX/Resources/geosite.dat.gz
+ClashX/Resources/geoip.db.gz
+ClashX/Resources/geosite.db.gz
 .bundle/config
 ClashX/Resources/com.metacubex.ClashX.ProxyConfigHelper.*
 clash.meta

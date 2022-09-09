@@ -5,9 +5,8 @@ import Gzip
 
 class ClashResourceManager {
     enum RuleFiles: String {
-        case mmdb = "Country.mmdb"
-        case geosite = "geosite.dat"
-        case geoip = "geoip.dat"
+        case geosite = "geosite.db"
+        case geoip = "geoip.db"
     }
 
     static func check() -> Bool {
@@ -30,7 +29,6 @@ class ClashResourceManager {
     }
 
     static func checkMMDB() {
-        checkRule(.mmdb)
         checkRule(.geoip)
         checkRule(.geosite)
     }
