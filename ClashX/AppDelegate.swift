@@ -652,9 +652,18 @@ extension AppDelegate {
         if ConfigManager.shared.isRunning { return }
 
         Logger.log("Trying start meta core")
-
+        var config: JSON!
         prepareConfigFile().then {
             self.generateInitConfig()
+        }.get {
+            config = $0
+            guard let mixedPort = config["inbounds"].arrayValue.filter({
+                $0["type"].string == "mixed"
+            }).first?["listen_port"].int, mixedPort > 0 else {
+                throw StartMetaError.configMissing
+                return
+            }
+            ConfigManager.shared.mixedPort = mixedPort
         }.then {
             self.startMeta($0)
         }.get { res in

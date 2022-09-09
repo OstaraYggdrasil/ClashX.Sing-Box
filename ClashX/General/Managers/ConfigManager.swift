@@ -19,6 +19,8 @@ class ConfigManager {
     var overrideApiURL: URL?
     var overrideSecret: String?
 
+    var mixedPort = -1
+
     var currentConfig: ClashConfig? {
         get {
             return currentConfigVariable.value

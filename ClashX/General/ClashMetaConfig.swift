@@ -15,23 +15,51 @@ class ClashMetaConfig: NSObject {
                 callback(nil)
                 return
             }
-
-            json["experimental"]["clash_api"]["external_ui"].string = {
-                guard let htmlPath = Bundle.main.path(forResource: "index", ofType: "html", inDirectory: "dashboard") else {
-                    return nil
-                }
-                return URL(fileURLWithPath: htmlPath).deletingLastPathComponent().path
-            }()
-
-            if json["experimental"]["clash_api"]["external_controller"].string == nil {
-                json["experimental"]["clash_api"]["external_controller"].string = "127.0.0.1:9090"
-            }
-            if json["experimental"]["clash_api"]["secret"].string == nil {
-                json["experimental"]["clash_api"]["secret"] = ""
-            }
-
+            json = updateClashAPI(json)
+            json = updateMixedIn(json)
             callback(json)
         }
+    }
+
+    static func updateClashAPI(_ config: JSON) -> JSON {
+        var json = config
+        json["experimental"]["clash_api"]["external_ui"].string = {
+            guard let htmlPath = Bundle.main.path(forResource: "index", ofType: "html", inDirectory: "dashboard") else {
+                return nil
+            }
+            return URL(fileURLWithPath: htmlPath).deletingLastPathComponent().path
+        }()
+        if json["experimental"]["clash_api"]["external_controller"].string == nil {
+            json["experimental"]["clash_api"]["external_controller"].string = "127.0.0.1:9090"
+        }
+        if json["experimental"]["clash_api"]["secret"].string == nil {
+            json["experimental"]["clash_api"]["secret"] = ""
+        }
+        return json
+    }
+
+    static func updateMixedIn(_ config: JSON) -> JSON {
+        var json = config
+        let mixeds = json["inbounds"].arrayValue.filter {
+            $0["type"].string == "mixed"
+        }
+        var port = 7890
+        if mixeds.count == 0 {
+            let obj = JSON([[
+                "type": "mixed",
+                "tag": "mixed-in",
+                "listen": "::",
+                "listen_port": port
+            ]])
+            do {
+                try json["inbounds"].merge(with: obj)
+            } catch let error {
+                print(error)
+            }
+        } else if let mixed = mixeds.first {
+            port = mixed["listen_port"].int ?? -1
+        }
+        return json
     }
 
     static func updatePorts(_ config: JSON, usedPorts: String) -> JSON {

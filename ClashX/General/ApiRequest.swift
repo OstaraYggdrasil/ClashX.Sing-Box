@@ -92,6 +92,7 @@ class ApiRequest {
             resp in
             switch resp.result {
             case let .success(config):
+                config.mixedPort = ConfigManager.shared.mixedPort
                 completeHandler(config)
             case let .failure(err):
                 Logger.log(err.localizedDescription)

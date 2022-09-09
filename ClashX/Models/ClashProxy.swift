@@ -26,7 +26,7 @@ enum ClashProxyType: String, Codable {
 
     // Sing-Box
     case socks = "Socks"
-    
+
     // Meta
     case vless = "Vless"
     case hysteria = "Hysteria"
