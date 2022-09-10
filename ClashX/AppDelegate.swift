@@ -1172,6 +1172,8 @@ extension AppDelegate {
 
 extension AppDelegate: NSMenuDelegate {
     func menuNeedsUpdate(_ menu: NSMenu) {
+        guard ConfigManager.shared.isRunning else { return }
+        
         MenuItemFactory.refreshExistingMenuItems()
         updateConfigFiles()
         syncConfig()
