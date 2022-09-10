@@ -370,7 +370,7 @@
                                             <action selector="checkForUpdate:" target="Voe-Tx-rLC" id="y8T-Su-dgd"/>
                                         </connections>
                                     </menuItem>
-                                    <menuItem title="Log level" id="3Da-fL-Mzr">
+                                    <menuItem title="Log level" hidden="YES" id="3Da-fL-Mzr">
                                         <modifierMask key="keyEquivalentModifierMask"/>
                                         <menu key="submenu" title="Log level" id="wqo-3T-4qO">
                                             <items>
