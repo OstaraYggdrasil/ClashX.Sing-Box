@@ -1,4 +1,4 @@
-name: ClashX
+name: sing-box
 
 on:
   push:
@@ -19,7 +19,7 @@ jobs:
         fetch-depth: 0
 
     - name: test
-      run: git rev-list --count origin/master..origin/meta
+      run: git rev-list --count origin/master..origin/sing-box
 
     - name: setup Go
       uses: actions/setup-go@v3
@@ -33,17 +33,17 @@ jobs:
       run: python3 ClashX/add_build_info.py
 
     - name: build
-      run: xcodebuild archive -workspace ClashX.xcworkspace -scheme ClashX -archivePath archive/ClashX.xcarchive -showBuildTimingSummary -allowProvisioningUpdates
+      run: xcodebuild archive -workspace ClashX.xcworkspace -scheme Sing-Box -archivePath archive/ClashX.xcarchive -showBuildTimingSummary -allowProvisioningUpdates
 
     - name: create zip
-      run: ditto -c -k --sequesterRsrc --keepParent archive/ClashX.xcarchive/Products/Applications/ClashX\ Meta.app ClashX\ Meta.zip
+      run: ditto -c -k --sequesterRsrc --keepParent archive/ClashX.xcarchive/Products/Applications/sing-box.app sing-box.zip
 
     - name: Upload Artifact
       uses: actions/upload-artifact@v3
       if: "!startsWith(github.ref, 'refs/tags/')"
       with:
-        name: "ClashX Meta.zip"
-        path: "ClashX Meta.zip"
+        name: "sing-box.zip"
+        path: "sing-boxa.zip"
 
     - name: upload build to github
       uses: softprops/action-gh-release@v1
@@ -52,4 +52,4 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
         generate_release_notes: true
-        files: "ClashX Meta.zip"
+        files: "sing-box.zip"
