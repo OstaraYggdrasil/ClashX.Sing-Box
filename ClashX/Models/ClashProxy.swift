@@ -24,7 +24,7 @@ enum ClashProxyType: String, Codable {
     case trojan = "Trojan"
     case relay = "Relay"
 
-    // Sing-Box
+    // sing-box
     case socks = "Socks"
 
     // Meta

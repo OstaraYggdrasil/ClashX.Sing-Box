@@ -29,13 +29,13 @@
 "Cancel" = "取消";
 
 /* No comment provided by engineer. */
-"ClashX fail to create ~/.config/sing-box folder. Please check privileges or manually create folder and restart ClashX." = "ClashX 创建 ~/.config/sing-box 文件夹失败，请检查权限设置或者手动创建文件夹后重启 ClashX";
+"sing-box fail to create ~/.config/sing-box folder. Please check privileges or manually create folder and restart sing-box." = "sing-box 创建 ~/.config/sing-box 文件夹失败，请检查权限设置或者手动创建文件夹后重启 sing-box";
 
 /* No comment provided by engineer. */
-"ClashX needs to install/update a helper tool with administrator privileges, otherwise ClashX won't be able to configure system proxy." = "ClashX 需要使用管理员权限安装/更新一个帮助程序，否则 ClashX 将无法设置系统代理。";
+"sing-box needs to install/update a helper tool with administrator privileges, otherwise sing-box won't be able to configure system proxy." = "sing-box 需要使用管理员权限安装/更新一个帮助程序，否则 sing-box 将无法设置系统代理。";
 
 /* No comment provided by engineer. */
-"ClashX Start Error!" = "ClashX 启动出错";
+"sing-box Start Error!" = "sing-box 启动出错";
 
 /* No comment provided by engineer. */
 "Config file have been changed" = "配置文件已被修改";
@@ -116,7 +116,7 @@
 "Open github release page to download " = "打开 GitHub Release 下载 ";
 
 /* No comment provided by engineer. */
-"Ports Open Fail, Please try to restart ClashX" = "端口打开失败，请尝试重启ClashX";
+"Ports Open Fail, Please try to restart sing-box" = "端口打开失败，请尝试重启sing-box";
 
 /* No comment provided by engineer. */
 "Prelease" = "Prelease";
@@ -125,7 +125,7 @@
 "Proxy Mode" = "出站模式";
 
 /* No comment provided by engineer. */
-"Proxy settings are changed by another process. ClashX is no longer the default system proxy." = "系统代理设置已被另一个进程修改，ClashX不再是系统默认代理";
+"Proxy settings are changed by another process. sing-box is no longer the default system proxy." = "系统代理设置已被另一个进程修改，sing-box不再是系统默认代理";
 
 /* No comment provided by engineer. */
 "Quit" = "退出";
@@ -185,7 +185,7 @@
 "The remote config name is duplicated" = "托管配置文件名称重复";
 
 /* No comment provided by engineer. */
-"This version of ClashX contains a break change due to clash core 1.0 released. Check if your config is not working properly." = "由于Clash Core发布1.0版本，使用此版本的 ClashX 可能需要更新配置内容\n前往 https://github.com/Dreamacro/clash/wiki/breaking-changes-in-1.0.0 查看详情";
+"This version of sing-box contains a break change due to clash core 1.0 released. Check if your config is not working properly." = "由于Clash Core发布1.0版本，使用此版本的 sing-box 可能需要更新配置内容\n前往 https://github.com/Dreamacro/clash/wiki/breaking-changes-in-1.0.0 查看详情";
 
 /* No comment provided by engineer. */
 "Update All Providers" = "更新所有 Providers";

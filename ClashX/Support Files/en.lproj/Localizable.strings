@@ -29,13 +29,13 @@
 "Cancel" = "Cancel";
 
 /* No comment provided by engineer. */
-"ClashX fail to create ~/.config/sing-box folder. Please check privileges or manually create folder and restart ClashX." = "ClashX fail to create ~/.config/sing-box folder. Please check privileges or manually create folder and restart ClashX.";
+"sing-box fail to create ~/.config/sing-box folder. Please check privileges or manually create folder and restart sing-box." = "sing-box fail to create ~/.config/sing-box folder. Please check privileges or manually create folder and restart sing-box.";
 
 /* No comment provided by engineer. */
-"ClashX needs to install/update a helper tool with administrator privileges, otherwise ClashX won't be able to configure system proxy." = "ClashX needs to install/update a helper tool with administrator privileges, otherwise ClashX won't be able to configure system proxy.";
+"sing-box needs to install/update a helper tool with administrator privileges, otherwise sing-box won't be able to configure system proxy." = "sing-box needs to install/update a helper tool with administrator privileges, otherwise sing-box won't be able to configure system proxy.";
 
 /* No comment provided by engineer. */
-"ClashX Start Error!" = "ClashX Start Error!";
+"sing-box Start Error!" = "sing-box Start Error!";
 
 /* No comment provided by engineer. */
 "Config file have been changed" = "Config file have been changed";
@@ -116,7 +116,7 @@
 "Open github release page to download " = "Open github release page to download ";
 
 /* No comment provided by engineer. */
-"Ports Open Fail, Please try to restart ClashX" = "Ports Open Fail, Please try to restart ClashX";
+"Ports Open Fail, Please try to restart sing-box" = "Ports Open Fail, Please try to restart sing-box";
 
 /* No comment provided by engineer. */
 "Prelease" = "Prelease";
@@ -125,7 +125,7 @@
 "Proxy Mode" = "Proxy Mode";
 
 /* No comment provided by engineer. */
-"Proxy settings are changed by another process. ClashX is no longer the default system proxy." = "Proxy settings are changed by another process. ClashX is no longer the default system proxy.";
+"Proxy settings are changed by another process. sing-box is no longer the default system proxy." = "Proxy settings are changed by another process. sing-box is no longer the default system proxy.";
 
 /* No comment provided by engineer. */
 "Quit" = "Quit";
@@ -185,7 +185,7 @@
 "The remote config name is duplicated" = "The remote config name is duplicated";
 
 /* No comment provided by engineer. */
-"This version of ClashX contains a break change due to clash core 1.0 released. Check if your config is not working properly." = "This version of ClashX contains a break change due to clash core 1.0 released. Check if your config is not working properly.";
+"This version of sing-box contains a break change due to clash core 1.0 released. Check if your config is not working properly." = "This version of sing-box contains a break change due to clash core 1.0 released. Check if your config is not working properly.";
 
 /* No comment provided by engineer. */
 "Update All Providers" = "Update All Providers";

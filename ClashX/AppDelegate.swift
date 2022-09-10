@@ -264,7 +264,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
                  */
 
                 self.proxyModeMenuItem.submenu = nil
-                self.proxyModeMenuItem.title = "Sing-Box"
+                self.proxyModeMenuItem.title = "sing-box"
 
                 if old?.usedHttpPort != config.usedHttpPort || old?.usedSocksPort != config.usedSocksPort {
                     Logger.log("port config updated,new: \(config.usedHttpPort),\(config.usedSocksPort)")
