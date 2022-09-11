@@ -20,7 +20,7 @@
 "5hn-k8-CWe.headerCell.title" = "Api Secret";
 
 /* Class = "NSViewController"; title = "Remote Configs"; ObjectID = "6WI-Hi-v9j"; */
-"6WI-Hi-v9j.title" = "托管的配置文件";
+"6WI-Hi-v9j.title" = "订阅";
 
 /* Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "7G6-oO-vNs"; */
 "7G6-oO-vNs.title" = "Text Cell";
@@ -44,7 +44,7 @@
 "AYu-sK-qS6.title" = "Main Menu";
 
 /* Class = "NSMenu"; title = "Remote config"; ObjectID = "az2-wz-yyy"; */
-"az2-wz-yyy.title" = "托管配置";
+"az2-wz-yyy.title" = "订阅";
 
 /* Class = "NSMenuItem"; title = "Start at login"; ObjectID = "B1J-XB-BiZ"; */
 "B1J-XB-BiZ.title" = "开机启动";
@@ -86,7 +86,7 @@
 "F3d-AD-N6E.title" = "Meta";
 
 /* Class = "NSMenuItem"; title = "Remote config"; ObjectID = "h1C-R6-Y9w"; */
-"h1C-R6-Y9w.title" = "托管配置";
+"h1C-R6-Y9w.title" = "订阅";
 
 /* Class = "NSMenuItem"; title = "Set update interval"; ObjectID = "h1H-7k-9HS"; */
 "h1H-7k-9HS.title" = "设置更新间隔";

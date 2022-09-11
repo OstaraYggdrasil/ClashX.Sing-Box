@@ -17,9 +17,17 @@ struct Paths {
     static func localConfigPath(for name: String) -> String {
         return "\(kConfigFolderPath)\(configFileName(for: name))"
     }
+    
+    static func localSubConfigPath(for name: String) -> String {
+        return "\(kConfigFolderPath)" + "sub/" + "\(subFileName(for: name))"
+    }
 
     static func configFileName(for name: String) -> String {
         return "\(name).json"
+    }
+    
+    static func subFileName(for name: String) -> String {
+        return "\(name).yaml"
     }
 
     static func defaultCorePath() -> String? {

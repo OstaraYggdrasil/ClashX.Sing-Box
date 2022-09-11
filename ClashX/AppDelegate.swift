@@ -725,27 +725,15 @@ extension AppDelegate {
                 }
                 if !FileManager.default.fileExists(atPath: path) {
                     Logger.log("\(configName) not exists")
-                    if let config = RemoteConfigManager.shared.configs.first(where: { $0.name == configName }) {
-                        Logger.log("Try to download remote config \(configName)")
-                        RemoteConfigManager.updateConfig(config: config) {
-                            if let error = $0 {
-                                Logger.log("Download remote config failed, \(error)")
-                                resolver.reject(StartMetaError.remoteConfigMissing)
-                            } else {
-                                Logger.log("Download remote config success")
-                                resolver.fulfill_()
-                            }
-                        }
-                    } else {
-                        if configName != "config" {
-                            ConfigManager.selectConfigName = "config"
-                        }
-
-                        Logger.log("Try to copy default config")
-                        ICloudManager.shared.setup()
-                        ConfigFileManager.copySampleConfigIfNeed()
-                        resolver.fulfill_()
+                    
+                    if configName != "config" {
+                        ConfigManager.selectConfigName = "config"
                     }
+
+                    Logger.log("Try to copy default config")
+                    ICloudManager.shared.setup()
+                    ConfigFileManager.copySampleConfigIfNeed()
+                    resolver.fulfill_()
                 } else {
                     resolver.fulfill_()
                 }

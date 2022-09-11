@@ -8,6 +8,7 @@
 
 import Alamofire
 import Cocoa
+import Yams
 
 class RemoteConfigManager {
     var configs: [RemoteConfigModel] = []
@@ -187,6 +188,7 @@ class RemoteConfigManager {
                     if FileManager.default.fileExists(atPath: savePath) {
                         try FileManager.default.removeItem(atPath: savePath)
                     }
+                    try FileManager.default.createDirectory(at: URL(fileURLWithPath: savePath).deletingLastPathComponent(), withIntermediateDirectories: true)
                     try newConfig.write(to: URL(fileURLWithPath: savePath), atomically: true, encoding: .utf8)
                     complete?(nil)
                 } catch let err {
@@ -197,11 +199,13 @@ class RemoteConfigManager {
             if ICloudManager.shared.isICloudEnable() {
                 ICloudManager.shared.getUrl { url in
                     guard let url = url else { return }
-                    let saveUrl = url.appendingPathComponent(Paths.configFileName(for: config.name))
+                    let saveUrl = url
+                        .appendingPathComponent("sub")
+                        .appendingPathComponent(Paths.configFileName(for: config.name))
                     saveAction(saveUrl.path)
                 }
             } else {
-                let savePath = Paths.localConfigPath(for: config.name)
+                let savePath = Paths.localSubConfigPath(for: config.name)
                 saveAction(savePath)
             }
         }
@@ -224,11 +228,22 @@ class RemoteConfigManager {
         return confPath
     }
 
-    static func verifyConfig(string: String) -> ErrorString? {
-        guard let confPath = createCacheConfig(string: string) else {
-            return "Create verify config file failed"
+    static func loadProxies(string: String) -> ([ClashVmess], ErrorString?) {
+        struct Sub: Codable {
+            let proxies: [ClashVmess]
         }
-        return RemoteConfigManager.shared.verifyConfigTask.test(kConfigFolderPath, confFilePath: confPath)
+        guard let sub = try? YAMLDecoder().decode(Sub.self, from: string) else {
+            return ([], "Decode config failed.")
+        }
+        let proxies = sub.proxies.filter({ $0.type == "vmess" })
+        guard proxies.count > 0 else {
+            return ([], "Empty config.")
+        }
+        return (proxies, nil)
+    }
+    
+    static func verifyConfig(string: String) -> ErrorString? {
+        return loadProxies(string: string).1
     }
 
     static func showAdd() {

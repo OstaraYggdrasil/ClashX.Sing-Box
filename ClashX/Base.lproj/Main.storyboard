@@ -289,9 +289,9 @@
                                             <action selector="actionUpdateConfig:" target="Voe-Tx-rLC" id="oW5-Ll-SY8"/>
                                         </connections>
                                     </menuItem>
-                                    <menuItem title="Remote config" id="h1C-R6-Y9w">
+                                    <menuItem title="Subscribes" id="h1C-R6-Y9w">
                                         <modifierMask key="keyEquivalentModifierMask"/>
-                                        <menu key="submenu" title="Remote config" id="az2-wz-yyy">
+                                        <menu key="submenu" title="Subscribes" id="az2-wz-yyy">
                                             <items>
                                                 <menuItem title="Manage" keyEquivalent="m" id="Dwg-Qb-2AU">
                                                     <connections>
@@ -636,10 +636,10 @@
             </objects>
             <point key="canvasLocation" x="-32" y="744"/>
         </scene>
-        <!--Remote Configs-->
+        <!--Subscribes-->
         <scene sceneID="lXv-k7-YEi">
             <objects>
-                <viewController title="Remote Configs" identifier="RemoteConfigViewController" storyboardIdentifier="RemoteConfigViewController" showSeguePresentationStyle="single" id="6WI-Hi-v9j" customClass="RemoteConfigViewController" customModule="Sing_Box" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Subscribes" identifier="RemoteConfigViewController" storyboardIdentifier="RemoteConfigViewController" showSeguePresentationStyle="single" id="6WI-Hi-v9j" customClass="RemoteConfigViewController" customModule="Sing_Box" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="BIo-GY-n0C">
                         <rect key="frame" x="0.0" y="0.0" width="403" height="256"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -799,8 +799,8 @@
                                 </tableHeaderView>
                             </scrollView>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="P7n-N0-pkv">
-                                <rect key="frame" x="18" y="220" width="51" height="16"/>
-                                <textFieldCell key="cell" lineBreakMode="clipping" title="Configs" id="tL1-bl-LXd">
+                                <rect key="frame" x="18" y="220" width="115" height="16"/>
+                                <textFieldCell key="cell" lineBreakMode="clipping" title="Clash Vmess Type" id="tL1-bl-LXd">
                                     <font key="font" usesAppearanceFont="YES"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
