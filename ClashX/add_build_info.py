@@ -14,15 +14,13 @@ def write_to_info():
         exit(-1)
 
 
-    buildNumber = subprocess.check_output(["git", "rev-list", "--count", "origin/master..origin/meta"]).strip().decode()
+    buildNumber = subprocess.check_output(["git", "rev-list", "--count", "origin/master..origin/sing-box"]).strip().decode()
     contents["CFBundleVersion"] = buildNumber
 
     buildVersion = subprocess.check_output(["git", "describe", "--tags", "--abbrev=0"]).strip().decode()
     contents["CFBundleShortVersionString"] = buildVersion
 
-    coreVersion = subprocess.check_output(["bash", "-c", "curl -s https://api.github.com/repos/MetaCubeX/Clash.Meta/releases/latest | jq -r '.name'"]).strip().decode()
-    contents["coreVersion"] = coreVersion
-
+    contents["coreVersion"] = "N/A"
 
     branch = subprocess.check_output(["git", "rev-parse", "--abbrev-ref", "HEAD"]).strip().decode()
     commit = subprocess.check_output(["git", "describe", "--always"]).strip().decode()
