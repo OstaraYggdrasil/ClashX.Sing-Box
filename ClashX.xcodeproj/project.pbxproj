@@ -13,6 +13,8 @@
 		018F88F9286DD0CB004DD0F7 /* DualTitleMenuItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 018F88F8286DD0CB004DD0F7 /* DualTitleMenuItem.swift */; };
 		01943259287D19BC008CC51A /* ClashRuleProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01943258287D19BC008CC51A /* ClashRuleProvider.swift */; };
 		019A239628657A7A00AE5698 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 019A239528657A7A00AE5698 /* main.swift */; };
+		01A5F36F28CCC5CD004FA5F1 /* ClashVmess.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01A5F36E28CCC5CD004FA5F1 /* ClashVmess.swift */; };
+		01A5F37128CCC5E0004FA5F1 /* SingBoxVmess.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01A5F37028CCC5E0004FA5F1 /* SingBoxVmess.swift */; };
 		01B009AE2854533300B93618 /* geoip.db.gz in Resources */ = {isa = PBXBuildFile; fileRef = 01B009AC2854533200B93618 /* geoip.db.gz */; };
 		01B009AF2854533300B93618 /* geosite.db.gz in Resources */ = {isa = PBXBuildFile; fileRef = 01B009AD2854533300B93618 /* geosite.db.gz */; };
 		01BFF3C128CB9D6D006CE3F2 /* menu_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 01BFF3C028CB9D6D006CE3F2 /* menu_icon.png */; };
@@ -137,6 +139,8 @@
 		018F88F8286DD0CB004DD0F7 /* DualTitleMenuItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DualTitleMenuItem.swift; sourceTree = "<group>"; };
 		01943258287D19BC008CC51A /* ClashRuleProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClashRuleProvider.swift; sourceTree = "<group>"; };
 		019A239528657A7A00AE5698 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
+		01A5F36E28CCC5CD004FA5F1 /* ClashVmess.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClashVmess.swift; sourceTree = "<group>"; };
+		01A5F37028CCC5E0004FA5F1 /* SingBoxVmess.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingBoxVmess.swift; sourceTree = "<group>"; };
 		01B009AC2854533200B93618 /* geoip.db.gz */ = {isa = PBXFileReference; lastKnownFileType = archive.gzip; path = geoip.db.gz; sourceTree = "<group>"; };
 		01B009AD2854533300B93618 /* geosite.db.gz */ = {isa = PBXFileReference; lastKnownFileType = archive.gzip; path = geosite.db.gz; sourceTree = "<group>"; };
 		01BFF3C028CB9D6D006CE3F2 /* menu_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = menu_icon.png; sourceTree = "<group>"; };
@@ -262,6 +266,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		01A5F36D28CCC5B0004FA5F1 /* Subscribes */ = {
+			isa = PBXGroup;
+			children = (
+				01A5F36E28CCC5CD004FA5F1 /* ClashVmess.swift */,
+				01A5F37028CCC5E0004FA5F1 /* SingBoxVmess.swift */,
+			);
+			path = Subscribes;
+			sourceTree = "<group>";
+		};
 		4913C82021157CEB00F6B87C /* Macro */ = {
 			isa = PBXGroup;
 			children = (
@@ -323,6 +336,7 @@
 		492C4866210EE69B004554A0 /* General */ = {
 			isa = PBXGroup;
 			children = (
+				01A5F36D28CCC5B0004FA5F1 /* Subscribes */,
 				491C250121BD561200AB5D44 /* Managers */,
 				491C250021BD55B900AB5D44 /* Utils */,
 				492C4868210EE6B9004554A0 /* ApiRequest.swift */,
@@ -725,8 +739,10 @@
 				8ACD21BB27A04C7800BC4632 /* ProxySettingCommand.swift in Sources */,
 				49722FF1211F338B00650A41 /* Witness.swift in Sources */,
 				49722FF0211F338B00650A41 /* EventStream.swift in Sources */,
+				01A5F36F28CCC5CD004FA5F1 /* ClashVmess.swift in Sources */,
 				499A486522EEA3FD00F6C675 /* Array+Safe.swift in Sources */,
 				F92D0B24236BC12000575E15 /* SavedProxyModel.swift in Sources */,
+				01A5F37128CCC5E0004FA5F1 /* SingBoxVmess.swift in Sources */,
 				F92D0B2A236C759100575E15 /* NSTextField+Vibrancy.swift in Sources */,
 				F910AA24240134AF00116E95 /* ProxyGroupMenu.swift in Sources */,
 				4952C3BF2115C7CA004A4FA8 /* MenuItemFactory.swift in Sources */,
