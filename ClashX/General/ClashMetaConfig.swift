@@ -119,6 +119,13 @@ class ClashMetaConfig: NSObject {
                 return
             }
             
+            func findSelectorIndex(for tag: String) -> Int? {
+                outbounds.firstIndex(where: {
+                    $0["tag"].stringValue == tag &&
+                    $0["type"].stringValue == "selector"
+                })
+            }
+            
             func tagName(_ name: String) -> String {
                 var new = name
                 if new == "" {
@@ -148,10 +155,7 @@ class ClashMetaConfig: NSObject {
             let groupName = conf.name
             let outbounds = json["outbounds"].arrayValue
             
-            if let i = outbounds.firstIndex(where: {
-                $0["tag"].stringValue == groupName &&
-                $0["type"].stringValue == "selector"
-            }) {
+            if let i = findSelectorIndex(for: groupName) {
                 let names = proxies.map({ $0["tag"].stringValue })
                 json["outbounds"][i]["outbounds"] = .init(names)
             } else {
@@ -166,10 +170,7 @@ class ClashMetaConfig: NSObject {
                 names.append($0["tag"].stringValue)
             }
             
-            if let i = outbounds.firstIndex(where: {
-                $0["tag"].stringValue == "PROXY" &&
-                $0["type"].stringValue == "selector"
-            }) {
+            if let i = findSelectorIndex(for: "PROXY") {
                 var names = json["outbounds"][i]["outbounds"].arrayObject as? [String] ?? []
                 if !names.contains(groupName) {
                     names.append(groupName)
