@@ -146,17 +146,26 @@ class ClashMetaConfig: NSObject {
             
 //            let groupName = tagName(conf.name)
             let groupName = conf.name
-            proxies.insert([
-                "tag": groupName,
-                "type": "selector",
-                "outbounds": proxies.map({ $0["tag"].stringValue })
-            ], at: 0)
+            let outbounds = json["outbounds"].arrayValue
+            
+            if let i = outbounds.firstIndex(where: {
+                $0["tag"].stringValue == groupName &&
+                $0["type"].stringValue == "selector"
+            }) {
+                let names = proxies.map({ $0["tag"].stringValue })
+                json["outbounds"][i]["outbounds"] = .init(names)
+            } else {
+                proxies.insert([
+                    "tag": groupName,
+                    "type": "selector",
+                    "outbounds": proxies.map({ $0["tag"].stringValue })
+                ], at: 0)
+            }
             
             proxies.forEach {
                 names.append($0["tag"].stringValue)
             }
             
-            let outbounds = json["outbounds"].arrayValue
             if let i = outbounds.firstIndex(where: {
                 $0["tag"].stringValue == "PROXY" &&
                 $0["type"].stringValue == "selector"
