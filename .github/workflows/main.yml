@@ -43,7 +43,7 @@ jobs:
       if: "!startsWith(github.ref, 'refs/tags/')"
       with:
         name: "sing-box.zip"
-        path: "sing-boxa.zip"
+        path: "sing-box.zip"
 
     - name: upload build to github
       uses: softprops/action-gh-release@v1
