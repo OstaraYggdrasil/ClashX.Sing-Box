@@ -5,6 +5,7 @@
 import Foundation
 import Cocoa
 import SwiftyJSON
+import Yams
 
 class ClashMetaConfig: NSObject {
     static func generateInitConfig(_ callback: @escaping ((JSON?) -> Void)) {
@@ -17,6 +18,7 @@ class ClashMetaConfig: NSObject {
             }
             json = updateClashAPI(json)
             json = updateMixedIn(json)
+            json = updateSub(json)
             callback(json)
         }
     }
@@ -100,6 +102,83 @@ class ClashMetaConfig: NSObject {
 
         json["experimental"]["clash_api"]["external_controller"].string = "127.0.0.1:\(update(ecPort) ?? 9090)"
 
+        return json
+    }
+    
+    static func updateSub(_ config: JSON) -> JSON {
+        var json = config
+        var names = json["outbounds"].arrayValue.map {
+            $0["tag"].stringValue
+        }
+        let rcm = RemoteConfigManager.shared
+        rcm.configs.forEach { conf in
+            let path = Paths.localSubConfigPath(for: conf.name)
+            guard let data = FileManager.default.contents(atPath: path),
+                  let string = String(data: data, encoding: .utf8),
+                  RemoteConfigManager.verifyConfig(string: string) == nil else {
+                return
+            }
+            
+            func tagName(_ name: String) -> String {
+                var new = name
+                if new == "" {
+                    new = conf.name
+                }
+                
+                let n = new
+                var i = 1
+                while names.contains(new) {
+                    new = n + "-\(i)"
+                    i += 1
+                }
+                return new
+            }
+            
+            let encoder = JSONEncoder()
+            var proxies = RemoteConfigManager.loadProxies(string: string).0.compactMap { proxy -> Data? in
+                var sb = proxy.toSingBox()
+                sb.tag = tagName(sb.tag)
+                return try? encoder.encode(sb)
+            }.compactMap {
+                try? JSON(data: $0)
+            }
+            guard proxies.count > 0 else { return }
+            
+//            let groupName = tagName(conf.name)
+            let groupName = conf.name
+            proxies.insert([
+                "tag": groupName,
+                "type": "selector",
+                "outbounds": proxies.map({ $0["tag"].stringValue })
+            ], at: 0)
+            
+            proxies.forEach {
+                names.append($0["tag"].stringValue)
+            }
+            
+            let outbounds = json["outbounds"].arrayValue
+            if let i = outbounds.firstIndex(where: {
+                $0["tag"].stringValue == "PROXY" &&
+                $0["type"].stringValue == "selector"
+            }) {
+                var names = json["outbounds"][i]["outbounds"].arrayObject as? [String] ?? []
+                if !names.contains(groupName) {
+                    names.append(groupName)
+                }
+                json["outbounds"][i]["outbounds"] = .init(names)
+            } else {
+                proxies.append([
+                    "tag": "PROXY",
+                    "type": "selector",
+                    "outbounds": [groupName]
+                ])
+            }
+            
+            try? json.merge(with: [
+                "outbounds": proxies
+            ])
+        }
+        
         return json
     }
 }
