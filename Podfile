@@ -29,5 +29,6 @@ target 'Sing-Box' do
   pod "FlexibleDiff"
   pod 'GzipSwift'
   pod "PromiseKit", "~> 6.8"
+  pod 'Yams'
 end
 
