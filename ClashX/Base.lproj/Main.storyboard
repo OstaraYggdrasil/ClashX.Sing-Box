@@ -171,7 +171,7 @@
                         <outlet property="delegate" destination="Voe-Tx-rLC" id="PrD-fu-P6m"/>
                     </connections>
                 </application>
-                <customObject id="Voe-Tx-rLC" customClass="AppDelegate" customModule="ClashX_Meta" customModuleProvider="target">
+                <customObject id="Voe-Tx-rLC" customClass="AppDelegate" customModule="Sing_Box" customModuleProvider="target">
                     <connections>
                         <outlet property="allowFromLanMenuItem" destination="Vz8-7n-vx6" id="Fzz-EG-huC"/>
                         <outlet property="alphaMetaVersionMenuItem" destination="Stq-Vy-QaD" id="2d6-jd-m0Z"/>
@@ -551,7 +551,7 @@
         <!--About View Controller-->
         <scene sceneID="bW6-wi-r8Q">
             <objects>
-                <viewController showSeguePresentationStyle="single" id="UWQ-O3-RVk" customClass="AboutViewController" customModule="ClashX_Meta" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController showSeguePresentationStyle="single" id="UWQ-O3-RVk" customClass="AboutViewController" customModule="Sing_Box" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="JCR-G0-H6V">
                         <rect key="frame" x="0.0" y="0.0" width="451" height="300"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -627,7 +627,7 @@
                                     <stackView distribution="fill" orientation="vertical" alignment="leading" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="BaZ-rB-g4s">
                                         <rect key="frame" x="118" y="0.0" width="237" height="40"/>
                                         <subviews>
-                                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="q4m-SB-uHV" customClass="HyperlinkTextField" customModule="ClashX_Meta" customModuleProvider="target">
+                                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="q4m-SB-uHV" customClass="HyperlinkTextField" customModule="Sing_Box" customModuleProvider="target">
                                                 <rect key="frame" x="-2" y="24" width="221" height="16"/>
                                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="https://github.com/Dreamacro/clash" id="Bej-j7-KKV">
                                                     <font key="font" metaFont="system"/>
@@ -641,7 +641,7 @@
                                                     <userDefinedRuntimeAttribute type="string" keyPath="href" value="https://github.com/Dreamacro/clash"/>
                                                 </userDefinedRuntimeAttributes>
                                             </textField>
-                                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="bSi-kz-Dkf" customClass="HyperlinkTextField" customModule="ClashX_Meta" customModuleProvider="target">
+                                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="bSi-kz-Dkf" customClass="HyperlinkTextField" customModule="Sing_Box" customModuleProvider="target">
                                                 <rect key="frame" x="-2" y="0.0" width="241" height="16"/>
                                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="https://github.com/yichengchen/clashX" id="9ox-Fc-Wk3">
                                                     <font key="font" metaFont="system"/>
@@ -724,7 +724,7 @@
         <!--Remote Configs-->
         <scene sceneID="lXv-k7-YEi">
             <objects>
-                <viewController title="Remote Configs" identifier="RemoteConfigViewController" storyboardIdentifier="RemoteConfigViewController" showSeguePresentationStyle="single" id="6WI-Hi-v9j" customClass="RemoteConfigViewController" customModule="ClashX_Meta" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Remote Configs" identifier="RemoteConfigViewController" storyboardIdentifier="RemoteConfigViewController" showSeguePresentationStyle="single" id="6WI-Hi-v9j" customClass="RemoteConfigViewController" customModule="Sing_Box" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="BIo-GY-n0C">
                         <rect key="frame" x="0.0" y="0.0" width="403" height="256"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -956,7 +956,7 @@
         <!--External Control-->
         <scene sceneID="TO5-jN-VsZ">
             <objects>
-                <viewController title="External Manager" identifier="ExternalControlViewController" storyboardIdentifier="ExternalControlViewController" showSeguePresentationStyle="single" id="s6y-wL-pnr" userLabel="External Control" customClass="ExternalControlViewController" customModule="ClashX_Meta" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="External Manager" identifier="ExternalControlViewController" storyboardIdentifier="ExternalControlViewController" showSeguePresentationStyle="single" id="s6y-wL-pnr" userLabel="External Control" customClass="ExternalControlViewController" customModule="Sing_Box" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="Gao-fa-Dwr">
                         <rect key="frame" x="0.0" y="0.0" width="515" height="268"/>
                         <autoresizingMask key="autoresizingMask"/>
