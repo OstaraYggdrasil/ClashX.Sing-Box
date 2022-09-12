@@ -11,8 +11,7 @@ class ClashMetaConfig: NSObject {
     static func generateInitConfig(_ callback: @escaping ((JSON?) -> Void)) {
         ApiRequest.findConfigPath(configName: ConfigManager.selectConfigName) {
             guard let path = $0,
-                  let data = FileManager.default.contents(atPath: path),
-                  var json = try? JSON(data: data) else {
+                  var json = try? JSON(data: RemoteConfigManager.shared.verifyConfigTask.formatConfig(path)) else {
                 callback(nil)
                 return
             }

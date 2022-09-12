@@ -350,4 +350,20 @@ class MetaTask: NSObject {
         return MetaServer(externalController: clashConfig.externalController,
                           secret: clashConfig.secret ?? "")
     }
+    
+    func formatConfig(_ path: String) -> Data {
+        let proc = Process()
+        let pipe = Pipe()
+        proc.standardOutput = pipe
+        proc.executableURL = executableURL
+        proc.arguments = [
+            "format",
+            "-c",
+            path
+        ]
+        
+        try? proc.run()
+        proc.waitUntilExit()
+        return pipe.fileHandleForReading.readDataToEndOfFile()
+    }
 }
