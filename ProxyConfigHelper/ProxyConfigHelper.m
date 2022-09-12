@@ -55,7 +55,7 @@ ProxyConfigRemoteProcessProtocol
 - (void)connectionCheckOnLaunch {
     if (self.connections.count == 0) {
         self.shouldQuit = YES;
-        [self.metaTask stop];
+        [self.metaTask stop:NULL];
     }
 }
 
@@ -79,7 +79,7 @@ ProxyConfigRemoteProcessProtocol
         [weakSelf.connections removeObject:weakConnection];
         if (weakSelf.connections.count == 0) {
             weakSelf.shouldQuit = YES;
-            [weakSelf.metaTask stop];
+            [weakSelf.metaTask stop:NULL];
         }
     };
     [self.connections addObject:newConnection];
@@ -150,8 +150,8 @@ ProxyConfigRemoteProcessProtocol
     reply(re);
 }
 
-- (void)stopMeta {
-    [self.metaTask stop];
+- (void)stopMetaWithResult:(stringReplyBlock)reply {
+    [self.metaTask stop:reply];
 }
 
 - (void)getUsedPorts:(stringReplyBlock)reply {

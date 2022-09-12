@@ -120,7 +120,12 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         let group = DispatchGroup()
         var shouldWait = false
 
-        PrivilegedHelperManager.shared.helper()?.stopMeta()
+        group.enter()
+        PrivilegedHelperManager.shared.helper {
+            group.leave()
+        }?.stopMeta { _ in
+            group.leave()
+        }
 
         if ConfigManager.shared.proxyPortAutoSet && !ConfigManager.shared.isProxySetByOtherVariable.value || NetworkChangeNotifier.isCurrentSystemSetToClash(looser: true) ||
             NetworkChangeNotifier.hasInterfaceProxySetToClash() {
@@ -525,45 +530,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
 
     func updateConfig(configName: String? = nil, showNotification: Bool = true, completeHandler: ((ErrorString?) -> Void)? = nil) {
-        startProxy()
-        guard ConfigManager.shared.isRunning else { return }
-
-        let config = configName ?? ConfigManager.selectConfigName
-
-        ClashProxy.cleanCache()
-
-        ApiRequest.requestConfigUpdate(configName: config) {
-            [weak self] err in
-            guard let self = self else { return }
-
-            defer {
-                completeHandler?(err)
-            }
-
-            if let error = err {
-                NSUserNotificationCenter.default
-                    .postNotificationAlert(title: NSLocalizedString("Reload Config Fail", comment: ""),
-                          info: error)
-            } else {
-                self.syncConfig()
-                self.resetStreamApi()
-                self.runAfterConfigReload?()
-                self.runAfterConfigReload = nil
-                if showNotification {
-                    NSUserNotificationCenter.default
-                        .post(title: NSLocalizedString("Reload Config Succeed", comment: ""),
-                              info: NSLocalizedString("Success", comment: ""))
-                }
-
-                if let newConfigName = configName {
-                    ConfigManager.selectConfigName = newConfigName
-                }
-                self.selectProxyGroupWithMemory()
-                self.selectOutBoundModeWithMenory()
-                MenuItemFactory.recreateProxyMenuItems()
-                NotificationCenter.default.post(name: .reloadDashboard, object: nil)
-            }
-        }
+        startProxy(showNotification: showNotification, completeHandler: completeHandler)
     }
 
     func setupExperimentalMenuItem() {
@@ -648,12 +615,12 @@ extension AppDelegate {
         let log: String?
     }
 
-    func startProxy() {
-        if ConfigManager.shared.isRunning { return }
-
+    func startProxy(showNotification: Bool = false, completeHandler: ((ErrorString?) -> Void)? = nil) {
         Logger.log("Trying start meta core")
         var config: JSON!
-        prepareConfigFile().then {
+        stopMeta().then {
+            self.prepareConfigFile()
+        }.then {
             self.generateInitConfig()
         }.get {
             config = $0
@@ -661,7 +628,6 @@ extension AppDelegate {
                 $0["type"].string == "mixed"
             }).first?["listen_port"].int, mixedPort > 0 else {
                 throw StartMetaError.configMissing
-                return
             }
             ConfigManager.shared.mixedPort = mixedPort
         }.then {
@@ -690,6 +656,12 @@ extension AppDelegate {
             MenuItemFactory.recreateProxyMenuItems()
             NotificationCenter.default.post(name: .reloadDashboard, object: nil)
 
+            if showNotification {
+                NSUserNotificationCenter.default
+                    .post(title: NSLocalizedString("Reload Config Succeed", comment: ""),
+                          info: NSLocalizedString("Success", comment: ""))
+            }
+            
             Logger.log("Init config file success.")
         }.catch { error in
             ConfigManager.shared.isRunning = false
@@ -783,6 +755,26 @@ extension AppDelegate {
                     resolver.reject(StartMetaError.startMetaFailed($0 ?? "unknown error"))
                 }
             }
+        }
+    }
+    
+    func stopMeta() -> Promise<()> {
+        guard ConfigManager.shared.isRunning else {
+            return .init()
+        }
+        return .init { resolver in
+            PrivilegedHelperManager.shared.helper {
+                resolver.reject(StartMetaError.helperNotFound)
+            }?.stopMeta { _ in
+                resolver.fulfill_()
+            }
+        }.get {
+            ConfigManager.shared.mixedPort = 0
+            ConfigManager.shared.apiPort = "8080"
+            ConfigManager.shared.apiSecret = ""
+            ConfigManager.shared.isRunning = false
+            self.proxyModeMenuItem.isEnabled = false
+            self.dashboardMenuItem.isEnabled = false
         }
     }
 

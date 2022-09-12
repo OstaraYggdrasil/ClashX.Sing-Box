@@ -28,19 +28,29 @@ class MetaTask: NSObject {
         let hello: String
     }
     
-    let proc = Process()
+    var proc = Process()
+    private var executableURL: URL?
     let procQueue = DispatchQueue(label: Bundle.main.bundleIdentifier! + ".MetaProcess")
     
     var timer: DispatchSourceTimer?
     let timerQueue = DispatchQueue(label: Bundle.main.bundleIdentifier! + ".timer")
     
     @objc func setLaunchPath(_ path: String) {
-        proc.executableURL = .init(fileURLWithPath: path)
+        let u = URL(fileURLWithPath: path)
+        executableURL = u
     }
     
     @objc func start(_ confPath: String,
                confFilePath: String,
                result: @escaping stringReplyBlock) {
+        
+        proc = Process()
+        
+        guard let executableURL = executableURL else {
+            result("sing-box path losted.")
+            return
+        }
+        proc.executableURL = executableURL
         
         var resultReturned = false
         
@@ -139,7 +149,7 @@ class MetaTask: NSObject {
         }
     }
 
-    @objc func stop() {
+    @objc func stop(_ result: stringReplyBlock?) {
         DispatchQueue.main.async {
             guard self.proc.isRunning else { return }
             let proc = Process()
@@ -147,6 +157,7 @@ class MetaTask: NSObject {
             proc.arguments = ["-15", "\(self.proc.processIdentifier)"]
             try? proc.run()
             proc.waitUntilExit()
+            result?(nil)
         }
     }
     

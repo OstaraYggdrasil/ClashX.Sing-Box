@@ -284,7 +284,7 @@
                                             <action selector="openConfigFolder:" target="Voe-Tx-rLC" id="6Ke-Bi-AAZ"/>
                                         </connections>
                                     </menuItem>
-                                    <menuItem title="Reload config" hidden="YES" keyEquivalent="r" id="q3G-VH-eyy">
+                                    <menuItem title="Reload config" keyEquivalent="r" id="q3G-VH-eyy">
                                         <connections>
                                             <action selector="actionUpdateConfig:" target="Voe-Tx-rLC" id="oW5-Ll-SY8"/>
                                         </connections>
