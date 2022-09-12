@@ -114,7 +114,7 @@ struct ClashVmess: Codable {
             global_padding: nil,
             authenticated_length: nil,
             packet_addr: nil,
-            tls: tls,
+            tls: self.tls == true ? tls : nil,
             multiplex: nil,
             transport: transport)
     }
