@@ -1032,7 +1032,7 @@ extension AppDelegate {
 extension AppDelegate {
     @IBAction func checkForUpdate(_ sender: NSMenuItem) {
         let unc = NSUserNotificationCenter.default
-        AF.request("https://api.github.com/repos/MetaCubeX/ClashX.Meta/releases/latest").responseString {
+        AF.request("https://api.github.com/repos/mrFq1/ClashX.Sing-Box/releases/latest").responseString {
             guard $0.error == nil,
                   let data = $0.data,
                   let tagName = try? JSON(data: data)["tag_name"].string else {
@@ -1046,7 +1046,7 @@ extension AppDelegate {
                 alert.addButton(withTitle: NSLocalizedString("OK", comment: ""))
                 alert.addButton(withTitle: NSLocalizedString("Cancel", comment: ""))
                 if alert.runModal() == .alertFirstButtonReturn {
-                    NSWorkspace.shared.open(.init(string: "https://github.com/MetaCubeX/ClashX.Meta/releases/latest")!)
+                    NSWorkspace.shared.open(.init(string: "https://github.com/mrFq1/ClashX.Sing-Box/releases/latest")!)
                 }
             } else {
                 unc.postUpdateNotice(msg: NSLocalizedString("No new release found.", comment: ""))
