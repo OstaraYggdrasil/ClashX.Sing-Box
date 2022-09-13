@@ -59,6 +59,7 @@ class ConfigManager {
         }
         set {
             UserDefaults.standard.set(newValue, forKey: "useYamlConfig")
+            watchCurrentConfigFile()
         }
     }
 
