@@ -48,6 +48,9 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     @IBOutlet var copyExportCommandExternalMenuItem: NSMenuItem!
     @IBOutlet var experimentalMenu: NSMenu!
     @IBOutlet var externalControlSeparator: NSMenuItem!
+    
+// MARK: - sing-box menu items
+    @IBOutlet var useYamlMenuItem: NSMenuItem!
 
     var disposeBag = DisposeBag()
     var statusItemView: StatusItemView!
@@ -207,6 +210,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             }).disposed(by: disposeBag)
 
         remoteConfigAutoupdateMenuItem.state = RemoteConfigManager.autoUpdateEnable ? .on : .off
+        
+        useYamlMenuItem.state = ConfigManager.useYamlConfig ? .on : .off
     }
 
     func setupData() {
@@ -695,19 +700,29 @@ extension AppDelegate {
                     resolver.reject(StartMetaError.configMissing)
                     return
                 }
-                if !FileManager.default.fileExists(atPath: path) {
-                    Logger.log("\(configName) not exists")
-                    
-                    if configName != "config" {
-                        ConfigManager.selectConfigName = "config"
+                
+                if ConfigManager.useYamlConfig {
+                    if !FileManager.default.fileExists(atPath: path) {
+                        Logger.log("\(configName) not exists")
+                        resolver.reject(StartMetaError.configMissing)
+                    } else {
+                        resolver.fulfill_()
                     }
-
-                    Logger.log("Try to copy default config")
-                    ICloudManager.shared.setup()
-                    ConfigFileManager.copySampleConfigIfNeed()
-                    resolver.fulfill_()
                 } else {
-                    resolver.fulfill_()
+                    if !FileManager.default.fileExists(atPath: path) {
+                        Logger.log("\(configName) not exists")
+                        
+                        if configName != "config" {
+                            ConfigManager.selectConfigName = "config"
+                        }
+
+                        Logger.log("Try to copy default config")
+                        ICloudManager.shared.setup()
+                        ConfigFileManager.copySampleConfigIfNeed()
+                        resolver.fulfill_()
+                    } else {
+                        resolver.fulfill_()
+                    }
                 }
             }
         }
@@ -1012,9 +1027,9 @@ extension AppDelegate {
     }
 }
 
-// MARK: Meta Menu
+// MARK: sing-box Menu
 
- extension AppDelegate {
+extension AppDelegate {
     @IBAction func checkForUpdate(_ sender: NSMenuItem) {
         let unc = NSUserNotificationCenter.default
         AF.request("https://api.github.com/repos/MetaCubeX/ClashX.Meta/releases/latest").responseString {
@@ -1038,8 +1053,12 @@ extension AppDelegate {
             }
         }
     }
-
- }
+    
+    @IBAction func useYamlConfig(_ sender: NSMenuItem) {
+        sender.state = sender.state == .on ? .off : .on
+        ConfigManager.useYamlConfig = sender.state == .on
+    }
+}
 
 // MARK: crash hanlder
 

@@ -10,11 +10,29 @@ import Yams
 class ClashMetaConfig: NSObject {
     static func generateInitConfig(_ callback: @escaping ((JSON?) -> Void)) {
         ApiRequest.findConfigPath(configName: ConfigManager.selectConfigName) {
-            guard let path = $0,
-                  var json = try? JSON(data: RemoteConfigManager.shared.verifyConfigTask.formatConfig(path)) else {
+            var json: JSON!
+            guard let path = $0 else {
                 callback(nil)
                 return
             }
+            
+            if ConfigManager.useYamlConfig {
+                guard let yamlContent = FileManager.default.contents(atPath: path),
+                      let yamlString = String(data: yamlContent, encoding: .utf8),
+                        let yaml = try? Yams.load(yaml: yamlString) else {
+                    callback(nil)
+                    return
+                }
+                json = JSON(yaml)
+            } else {
+                guard let path = $0,
+                      let j = try? JSON(data: RemoteConfigManager.shared.verifyConfigTask.formatConfig(path)) else {
+                    callback(nil)
+                    return
+                }
+                json = j
+            }
+            
             json = updateClashAPI(json)
             json = updateMixedIn(json)
             json = updateSub(json)

@@ -23,7 +23,7 @@ struct Paths {
     }
 
     static func configFileName(for name: String) -> String {
-        return "\(name).json"
+        ConfigManager.useYamlConfig ? subFileName(for: name) : "\(name).json"
     }
     
     static func subFileName(for name: String) -> String {

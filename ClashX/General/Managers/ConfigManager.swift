@@ -52,6 +52,16 @@ class ConfigManager {
             watchCurrentConfigFile()
         }
     }
+    
+    static var useYamlConfig: Bool {
+        get {
+            UserDefaults.standard.bool(forKey: "useYamlConfig")
+        }
+        set {
+            UserDefaults.standard.set(newValue, forKey: "useYamlConfig")
+        }
+    }
+
 
     static func watchCurrentConfigFile() {
         if ICloudManager.shared.isICloudEnable() {

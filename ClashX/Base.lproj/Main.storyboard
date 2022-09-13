@@ -197,6 +197,7 @@
                         <outlet property="showProxyGroupCurrentMenuItem" destination="j9o-36-NTd" id="5jc-iE-bou"/>
                         <outlet property="socksPortMenuItem" destination="Uy1-g8-r6Q" id="NiI-Gy-9Sa"/>
                         <outlet property="statusMenu" destination="Afa-lD-EbR" id="cov-E9-WrO"/>
+                        <outlet property="useYamlMenuItem" destination="JbN-EM-AzE" id="NUd-jX-EHc"/>
                     </connections>
                 </customObject>
                 <menu id="Afa-lD-EbR">
@@ -335,6 +336,12 @@
                                                             </menuItem>
                                                         </items>
                                                     </menu>
+                                                </menuItem>
+                                                <menuItem title="Use YAML format config" id="JbN-EM-AzE">
+                                                    <modifierMask key="keyEquivalentModifierMask"/>
+                                                    <connections>
+                                                        <action selector="useYamlConfig:" target="Voe-Tx-rLC" id="w8J-3X-ZB6"/>
+                                                    </connections>
                                                 </menuItem>
                                                 <menuItem title="Show current proxy in menu" id="j9o-36-NTd">
                                                     <modifierMask key="keyEquivalentModifierMask"/>
