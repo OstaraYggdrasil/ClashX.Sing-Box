@@ -15,11 +15,11 @@ class ProxyGroupSpeedTestMenuItem: NSMenuItem {
 
     init(group: ClashProxy) {
         proxyGroup = group
-        if [.select, .fallback].contains(group.type) {
+//        if [.select, .fallback].contains(group.type) {
             testType = .benchmark
-        } else {
-            testType = .unknown
-        }
+//        } else {
+//            testType = .unknown
+//        }
 
         super.init(title: NSLocalizedString("Benchmark", comment: ""), action: nil, keyEquivalent: "")
         target = self

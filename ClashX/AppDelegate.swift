@@ -668,7 +668,7 @@ extension AppDelegate {
             }
             
             Logger.log("Init config file success.")
-        }.catch { error in
+        }.catch(on: .main) { error in
             ConfigManager.shared.isRunning = false
             self.proxyModeMenuItem.isEnabled = false
             Logger.log("\(error)", level: .error)

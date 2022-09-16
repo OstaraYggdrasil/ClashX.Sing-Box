@@ -288,11 +288,15 @@ class MetaTask: NSObject {
         
         let data = pipe.fileHandleForReading.readDataToEndOfFile()
         
-        guard let str = try? JSONDecoder().decode(MetaCurl.self, from: data),
-              str.hello == "clash" else {
+        if let str = try? JSONDecoder().decode(MetaCurl.self, from: data),
+           str.hello == "clash" {
+            return true
+        } else if let s = String(data: data, encoding: .utf8),
+                  s.contains("Temporary Redirect") {
+            return true
+        } else {
             return false
         }
-        return true
     }
     
     func formatMsg(_ msg: String) -> String {

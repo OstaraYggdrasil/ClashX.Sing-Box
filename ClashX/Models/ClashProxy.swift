@@ -18,18 +18,20 @@ enum ClashProxyType: String, Codable {
     case shadowsocks = "Shadowsocks"
     case shadowsocksR = "ShadowsocksR"
     case socks5 = "Socks5"
-    case http = "Http"
-    case vmess = "Vmess"
     case snell = "Snell"
     case trojan = "Trojan"
     case relay = "Relay"
 
     // sing-box
+    case http = "HTTP"
+    case vmess = "VMess"
+    
     case socks = "Socks"
-
-    // Meta
-    case vless = "Vless"
+    case vless = "VLESS"
     case hysteria = "Hysteria"
+    case wireGuard = "WireGuard"
+    case tor = "Tor"
+    case ssh = "SSH"
     case pass = "Pass"
 
     case unknown = "Unknown"
