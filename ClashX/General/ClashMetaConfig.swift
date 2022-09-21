@@ -138,8 +138,8 @@ class ClashMetaConfig: NSObject {
             
             func findSelectorIndex(for tag: String) -> Int? {
                 outbounds.firstIndex(where: {
-                    $0["tag"].stringValue == tag &&
-                    $0["type"].stringValue == "selector"
+                    $0["tag"].stringValue == tag
+                    && ["selector", "urltest"].contains($0["type"].stringValue)
                 })
             }
             
