@@ -435,12 +435,26 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     func initMetaCore() {
         Logger.log("initClashCore")
         let corePath = "\(NSHomeDirectory())/go/bin/sing-box"
+        
+        guard let version = testMetaCore(corePath) else {
+            let alert = NSAlert()
+            alert.messageText = "Failure to verify the sing-box in ~/go/bin/sing-box."
+            alert.alertStyle = .warning
+            alert.addButton(withTitle: NSLocalizedString("Quit", comment: ""))
+            alert.runModal()
+
+            DispatchQueue.main.async {
+                NSApplication.shared.terminate(nil)
+            }
+            return
+        }
+        
         RemoteConfigManager.shared.verifyConfigTask.setLaunchPath(corePath)
         PrivilegedHelperManager.shared.helper()?.initMetaCore(withPath: corePath)
-        Logger.log("initClashCore finish")
+        Logger.log("initClashCore finish with sing-box version: \(version)")
     }
 
-    func testMetaCore(_ path: String) -> (version: String, date: Date?)? {
+    func testMetaCore(_ path: String) -> String? {
         guard FileManager.default.fileExists(atPath: path),
               chmodX(path) else {
             return nil
@@ -448,7 +462,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
         let proc = Process()
         proc.executableURL = .init(fileURLWithPath: path)
-        proc.arguments = ["-v"]
+        proc.arguments = ["version"]
         let pipe = Pipe()
         proc.standardOutput = pipe
         do {
@@ -465,24 +479,14 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             return nil
         }
 
-        let outs = out.replacingOccurrences(of: "\n", with: "").split(separator: " ").map(String.init)
+        let outs = out.replacingOccurrences(of: "\n", with: " ").split(separator: " ").map(String.init)
 
-        guard outs.count == 13,
-              outs[0] == "Clash",
-              outs[1] == "Meta",
-              outs[3] == "darwin" else {
+        guard outs.count > 2,
+              outs[0] == "sing-box",
+              outs[1] == "version" else {
             return nil
         }
-
-        let version = outs[2]
-
-        let dateString = [outs[7], outs[8], outs[9], outs[10], outs[12]].joined(separator: "-")
-        let f = DateFormatter()
-        f.dateFormat = "E-MMM-d-HH:mm:ss-yyyy"
-        f.timeZone = .init(abbreviation: outs[11])
-        let date = f.date(from: dateString)
-
-        return (version: version, date: date)
+        return outs[2]
     }
 
     func validateDefaultCore() -> Bool {
