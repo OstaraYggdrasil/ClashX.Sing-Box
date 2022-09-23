@@ -17,7 +17,7 @@ struct SingBoxVmess: Codable {
     let network: String?
     let global_padding: Bool?
     let authenticated_length: Bool?
-    let packet_addr: Bool?
+    let packet_encoding: String?
     let tls: Tls?
     let multiplex: Multiplex?
     let transport: Transport?
