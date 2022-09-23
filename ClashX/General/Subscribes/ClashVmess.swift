@@ -90,13 +90,15 @@ struct ClashVmess: Codable {
             }
             
             let path = wsOpts?.path ?? h2Opts?.path ?? httpOpts?.path?.first
+            let headers = wsOpts?.headers ?? httpOpts?.headers ?? nil
+            
             
             return .init(
                 type: network,
                 host: h2Opts?.host,
                 path: path,
                 method: httpOpts?.method,
-                headers: wsOpts?.headers ?? httpOpts?.headers,
+                headers: headers,
                 max_early_data: wsOpts?.maxEarlyData,
                 early_data_header_name: wsOpts?.earlyDataHeaderName,
                 service_name: grpcOpts?.grpcServiceName)

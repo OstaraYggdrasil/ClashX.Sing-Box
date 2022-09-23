@@ -49,7 +49,6 @@ class MenuItemFactory {
         guard let proxyInfo = proxyInfo else { return }
 
         var menuItems = [NSMenuItem]()
-        var collapsedItems = [NSMenuItem]()
 
         for proxy in proxyInfo.proxyGroups {
             var menu: NSMenuItem?

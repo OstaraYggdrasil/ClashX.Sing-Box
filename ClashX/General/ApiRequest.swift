@@ -268,9 +268,6 @@ class ApiRequest {
     static func getRules(completeHandler: @escaping ([ClashRule]) -> Void) {
         req("/rules").responseData { res in
             guard let data = try? res.result.get() else { return }
-
-            ClashRuleProviderResp.init()
-
             let rule = ClashRuleResponse.fromData(data)
             completeHandler(rule.rules ?? [])
         }
