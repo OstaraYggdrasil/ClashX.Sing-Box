@@ -97,6 +97,9 @@ class MetaTask: NSObject {
                 let pipe = Pipe()
                 var logs = [String]()
                 
+                let errorPipe = Pipe()
+                var errorLogs = [String]()
+                
                 pipe.fileHandleForReading.readabilityHandler = { pipe in
                     guard let output = String(data: pipe.availableData, encoding: .utf8),
                           !resultReturned else {
@@ -111,9 +114,45 @@ class MetaTask: NSObject {
                 }
                 
                 
+                errorPipe.fileHandleForReading.readabilityHandler = { pipe in
+                    guard let output = String(data: pipe.availableData, encoding: .utf8) else {
+                        return
+                    }
+                    output.split(separator: "\n").forEach {
+                        errorLogs.append(String($0))
+                    }
+                }
+                
+                
+                self.proc.standardError = errorPipe
                 self.proc.standardOutput = pipe
                 
-                self.proc.terminationHandler = { _ in
+                self.proc.terminationHandler = { proc in
+                    
+                    guard !resultReturned else {
+                        errorLogs.append("terminationStatus: \(proc.terminationStatus)")
+                        errorLogs.append("terminationReason: \(proc.terminationReason)")
+                        
+                        let data = errorLogs.joined(separator: "\n").data(using: .utf8)
+                        
+                        let url = URL(fileURLWithPath: confPath)
+                            .appendingPathComponent("logs")
+                            
+                        let fm = FileManager.default
+                        try? fm.createDirectory(atPath: url.path, withIntermediateDirectories: true)
+                        
+                        let fileName = {
+                            let dateformat = DateFormatter()
+                            dateformat.dateFormat = "yyyy-MM-dd_HH-mm-ss"
+                            let s = dateformat.string(from: Date())
+                            return "singbox_core_crash_\(s).log"
+                        }()
+                        
+                        fm.createFile(atPath: url.appendingPathComponent(fileName).path, contents: data)
+                        return
+                    }
+                    
+                    
                     let data = pipe.fileHandleForReading.readDataToEndOfFile()
                     guard let string = String(data: data, encoding: String.Encoding.utf8) else {
                         
