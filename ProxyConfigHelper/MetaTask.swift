@@ -130,6 +130,8 @@ class MetaTask: NSObject {
                 self.proc.terminationHandler = { proc in
                     
                     guard !resultReturned else {
+                        guard errorLogs.count > 0 else { return }
+                        
                         errorLogs.append("terminationStatus: \(proc.terminationStatus)")
                         errorLogs.append("terminationReason: \(proc.terminationReason)")
                         
