@@ -183,9 +183,8 @@ class ApiRequest {
                 case let .success(providerResp):
                     completeHandler?(providerResp)
                 case let .failure(err):
-                    print(err)
+                    Logger.log("requestProxyProviderList error \(err.localizedDescription)")
                     completeHandler?(ClashProviderResp())
-                    assertionFailure()
                 }
             }
     }
