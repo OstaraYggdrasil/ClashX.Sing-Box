@@ -19,6 +19,8 @@
 		01B009AF2854533300B93618 /* geosite.db.gz in Resources */ = {isa = PBXBuildFile; fileRef = 01B009AD2854533300B93618 /* geosite.db.gz */; };
 		01BFF3C128CB9D6D006CE3F2 /* menu_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 01BFF3C028CB9D6D006CE3F2 /* menu_icon.png */; };
 		01B30C43291CE18F0081C4F7 /* MetaDNS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01B30C41291C98930081C4F7 /* MetaDNS.swift */; };
+		01A645D3292C769D00B37FA2 /* DNSConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01A645D2292C759100B37FA2 /* DNSConfiguration.swift */; };
+		01BC9ABE2928EB5A00F9B177 /* MetaDNS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01BC9ABD2928E5C600F9B177 /* MetaDNS.swift */; };
 		4913C82321157D0200F6B87C /* Notification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4913C82221157D0200F6B87C /* Notification.swift */; };
 		491E6203258A424D00313AEF /* CommonUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 491E61FD258A424500313AEF /* CommonUtils.m */; };
 		49228457270AADE20027A4B6 /* RemoteConfigUpdateIntervalSettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49228456270AADE20027A4B6 /* RemoteConfigUpdateIntervalSettingView.swift */; };
@@ -148,6 +150,7 @@
 		2E8EB5156E7A0F1F70D821BF /* libPods-Sing-Box.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Sing-Box.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		34184AD8AF8EDFBFCBA16857 /* Pods-Sing-Box.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Sing-Box.release.xcconfig"; path = "Pods/Target Support Files/Pods-Sing-Box/Pods-Sing-Box.release.xcconfig"; sourceTree = "<group>"; };
 		01B30C41291C98930081C4F7 /* MetaDNS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MetaDNS.swift; sourceTree = "<group>"; };
+		01BC9ABD2928E5C600F9B177 /* MetaDNS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MetaDNS.swift; sourceTree = "<group>"; };
 		3F86DA2DA3CC14731BE1ABF7 /* Pods-ClashX Meta.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ClashX Meta.release.xcconfig"; path = "Pods/Target Support Files/Pods-ClashX Meta/Pods-ClashX Meta.release.xcconfig"; sourceTree = "<group>"; };
 		446C07C35865B0BFA6A7AC1C /* Pods-Sing-Box.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Sing-Box.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Sing-Box/Pods-Sing-Box.debug.xcconfig"; sourceTree = "<group>"; };
 		4913C82221157D0200F6B87C /* Notification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notification.swift; sourceTree = "<group>"; };
@@ -474,7 +477,6 @@
 				49761DA521C9490400AE13EF /* Resources */,
 				49CF3B3A20CD783A001EBF94 /* Support Files */,
 				49CF3B2020CD7463001EBF94 /* AppDelegate.swift */,
-				01B30C41291C98930081C4F7 /* MetaDNS.swift */,
 				49CF3B2620CD7465001EBF94 /* Main.storyboard */,
 				49CF3B2920CD7465001EBF94 /* Info.plist */,
 				49CF3B2A20CD7465001EBF94 /* ClashX.entitlements */,
@@ -541,6 +543,8 @@
 				498960722340F21C00AFB7EC /* com.metacubex.ClashX.ProxyConfigHelper.entitlements */,
 				019A239528657A7A00AE5698 /* main.swift */,
 				0162E74E2864B819007218A6 /* MetaTask.swift */,
+				01BC9ABD2928E5C600F9B177 /* MetaDNS.swift */,
+				01A645D2292C759100B37FA2 /* DNSConfiguration.swift */,
 				F935B2F12307C802009E4D33 /* Helper-Launchd.plist */,
 				F935B2EA2307B6BA009E4D33 /* Helper-Info.plist */,
 				F935B2F22307CD32009E4D33 /* ProxyConfigHelper.h */,
@@ -720,7 +724,6 @@
 				F935B2FC23085515009E4D33 /* SystemProxyManager.swift in Sources */,
 				495A44D320D267D000888A0A /* LaunchAtLogin.swift in Sources */,
 				4929F67F258CE04700A435F6 /* Settings.swift in Sources */,
-				01B30C43291CE18F0081C4F7 /* MetaDNS.swift in Sources */,
 				493AEAE3221AE3420016FE98 /* AppVersionUtil.swift in Sources */,
 				49CF3B2120CD7463001EBF94 /* AppDelegate.swift in Sources */,
 				496BDEE021196F1E00C5207F /* Logger.swift in Sources */,
@@ -786,9 +789,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				F935B2F42307CD32009E4D33 /* ProxyConfigHelper.m in Sources */,
+				01A645D3292C769D00B37FA2 /* DNSConfiguration.swift in Sources */,
 				0162E74F2864B819007218A6 /* MetaTask.swift in Sources */,
 				019A239628657A7A00AE5698 /* main.swift in Sources */,
 				491E6203258A424D00313AEF /* CommonUtils.m in Sources */,
+				01BC9ABE2928EB5A00F9B177 /* MetaDNS.swift in Sources */,
 				F935B2FA23083EE6009E4D33 /* ProxySettingTool.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

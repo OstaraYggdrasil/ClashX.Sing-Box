@@ -60,8 +60,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
     var dashboardWindowController: ClashWebViewWindowController?
 
-    let metaDNS = MetaDNS()
-
     func applicationWillFinishLaunching(_ notification: Notification) {
         signal(SIGPIPE, SIG_IGN)
         // crash recorder
@@ -129,10 +127,9 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         PrivilegedHelperManager.shared.helper {
             group.leave()
         }?.stopMeta { _ in
-            group.leave()
         }
+            group.leave()
 
-        metaDNS.updateTunState(false)
 
         if ConfigManager.shared.proxyPortAutoSet && !ConfigManager.shared.isProxySetByOtherVariable.value || NetworkChangeNotifier.isCurrentSystemSetToClash(looser: true) ||
             NetworkChangeNotifier.hasInterfaceProxySetToClash() {
@@ -233,7 +230,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             .distinctUntilChanged()
             .bind { _ in
                 let isTunMode = ConfigManager.shared.isTunModeVariable.value
-                self.metaDNS.updateTunState(isTunMode)
+                PrivilegedHelperManager.shared.helper()?.updateTun(with: isTunMode)
+                Logger.log("tun state updated,new: \(isTunMode)")
         }.disposed(by: disposeBag)
 
         Observable
