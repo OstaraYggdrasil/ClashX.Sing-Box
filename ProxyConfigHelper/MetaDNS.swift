@@ -44,7 +44,11 @@ class MetaDNS: NSObject {
         dns.forEach {
             if $0.value.count == 1,
                $0.value[0] == defaultDNS {
-                savedDns[$0.key] = []
+                if savedDns[$0.key] == nil {
+                    savedDns[$0.key] = []
+                } else {
+                    // ignore save
+                }
             } else {
                 savedDns[$0.key] = $0.value
             }
