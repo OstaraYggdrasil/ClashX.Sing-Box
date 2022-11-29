@@ -69,7 +69,7 @@ class MetaDNS: NSObject {
     func getAllDns() -> [String: [String]] {
         var re = [String: [String]]()
         
-        guard let prefs = SCPreferencesCreate(nil, "ClashX" as CFString, nil),
+        guard let prefs = SCPreferencesCreate(nil, "com.metacubex.ClashX.ProxyConfigHelper.preferences" as CFString, nil),
               let values = SCPreferencesGetValue(prefs, kSCPrefNetworkServices) as? [String: AnyObject] else {
             return re
         }
@@ -79,11 +79,19 @@ class MetaDNS: NSObject {
         }.filter {
             ["AirPort", "Wi-Fi", "Ethernet"].contains($0.value)
         }.forEach {
-            re[$0.key] = DNSConfiguration.getDNSForServiceID($0.key)
+            re[$0.key] = getDNSForServiceID($0.key)
         }
         
         return re
     }
+    
+    func getDNSForServiceID(_ serviceID:String) -> [String] {
+        let serviceSetupDNSKey = "Setup:/Network/Service/\(serviceID)/DNS" as CFString
+        let dynmaicStore =  SCDynamicStoreCreate(kCFAllocatorSystemDefault, "com.metacubex.ClashX.ProxyConfigHelper.dns" as CFString, nil, nil)
+        
+        return SCDynamicStoreCopyValue(dynmaicStore, serviceSetupDNSKey)?[kSCPropNetDNSServerAddresses] as? [String] ?? []
+    }
+    
     
     @objc func flushDnsCache() {
         CommonUtils.runCommand("/usr/bin/killall", args: ["-HUP", "mDNSResponder"])
@@ -133,7 +141,7 @@ class MetaDNS: NSObject {
 
             let config = SCNetworkProtocolGetConfiguration(protoc)
 
-            var dic = (config as NSDictionary?)?.mutableCopy() as? NSMutableDictionary ?? NSMutableDictionary()
+            let dic = (config as NSDictionary?)?.mutableCopy() as? NSMutableDictionary ?? NSMutableDictionary()
             
             dic["ServerAddresses"] = dns
 
