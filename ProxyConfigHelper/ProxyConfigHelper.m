@@ -139,25 +139,35 @@ ProxyConfigRemoteProcessProtocol
 }
 
 - (void)initMetaCoreWithPath:(NSString *)path {
-    [self.metaTask setLaunchPath:path];
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self.metaTask setLaunchPath:path];
+    });
 }
 
 
 - (void)startMetaWithConfPath:(NSString *)confPath ConfFilePath:(NSString *)confFilePath result:(stringReplyBlock)reply {
-    [self.metaTask start:confPath confFilePath:confFilePath result:reply];
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self.metaTask start:confPath confFilePath:confFilePath result:reply];
+    });
 }
 
 - (void)verifyMetaWithConfPath:(NSString *)confPath ConfFilePath:(NSString *)confFilePath result:(stringReplyBlock)reply {
-    NSString* re = [self.metaTask test:confPath confFilePath:confFilePath];
-    reply(re);
+    dispatch_async(dispatch_get_main_queue(), ^{
+        NSString* re = [self.metaTask test:confPath confFilePath:confFilePath];
+        reply(re);
+    });
 }
 
 - (void)stopMetaWithResult:(stringReplyBlock)reply {
-    [self.metaTask stop:reply];
+    dispatch_async(dispatch_get_main_queue(), ^{
+		[self.metaTask stop:reply];
+    });
 }
 
 - (void)getUsedPorts:(stringReplyBlock)reply {
-    [self.metaTask getUsedPorts:reply];
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self.metaTask getUsedPorts:reply];
+    });
 }
 
 - (void)updateTunWith:(BOOL)state {
