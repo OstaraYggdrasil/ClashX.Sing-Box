@@ -223,16 +223,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
                 ApiRequest.shared.resetTrafficStreamApi()
             }.disposed(by: disposeBag)
 
-        ConfigManager.shared
-            .isTunModeVariable
-            .asObservable()
-            .skip(1)
-            .distinctUntilChanged()
-            .bind { _ in
-                let isTunMode = ConfigManager.shared.isTunModeVariable.value
-                PrivilegedHelperManager.shared.helper()?.updateTun(with: isTunMode)
-                Logger.log("tun state updated,new: \(isTunMode)")
-        }.disposed(by: disposeBag)
 
         Observable
             .merge([ConfigManager.shared.proxyPortAutoSetObservable,
