@@ -1,17 +1,17 @@
 PODS:
-  - Alamofire (5.6.1)
-  - CocoaLumberjack/Core (3.7.4)
-  - CocoaLumberjack/Swift (3.7.4):
+  - Alamofire (5.6.4)
+  - CocoaLumberjack/Core (3.8.0)
+  - CocoaLumberjack/Swift (3.8.0):
     - CocoaLumberjack/Core
   - FlexibleDiff (0.0.9)
   - GzipSwift (5.1.1)
   - LetsMove (1.25)
-  - PromiseKit (6.18.0):
-    - PromiseKit/CorePromise (= 6.18.0)
-    - PromiseKit/Foundation (= 6.18.0)
-    - PromiseKit/UIKit (= 6.18.0)
-  - PromiseKit/CorePromise (6.18.0)
-  - PromiseKit/Foundation (6.18.0):
+  - PromiseKit (6.18.1):
+    - PromiseKit/CorePromise (= 6.18.1)
+    - PromiseKit/Foundation (= 6.18.1)
+    - PromiseKit/UIKit (= 6.18.1)
+  - PromiseKit/CorePromise (6.18.1)
+  - PromiseKit/Foundation (6.18.1):
     - PromiseKit/CorePromise
   - RxCocoa (6.5.0):
     - RxRelay (= 6.5.0)
@@ -55,12 +55,12 @@ SPEC REPOS:
     - Yams
 
 SPEC CHECKSUMS:
-  Alamofire: 87bd8c952f9a4454320fce00d9cc3de57bcadaf5
-  CocoaLumberjack: 543c79c114dadc3b1aba95641d8738b06b05b646
+  Alamofire: 4e95d97098eacb88856099c4fc79b526a299e48c
+  CocoaLumberjack: 78abfb691154e2a9df8ded4350d504ee19d90732
   FlexibleDiff: b9ee9b8305b42c784f5dd40589203c97c55bbaa0
   GzipSwift: 893f3e48e597a1a4f62fafcb6514220fcf8287fa
   LetsMove: 7b9fe44737707d984fbd3f47af46609a9a07b461
-  PromiseKit: 879fa89b55fcb8f11ade9aad0c9721850bb71b9f
+  PromiseKit: 49d70c53d5d20e346beaea4b276b5dd2ab446bb4
   RxCocoa: 94f817b71c07517321eb4f9ad299112ca8af743b
   RxRelay: 1de1523e604c72b6c68feadedd1af3b1b4d0ecbd
   RxSwift: 5710a9e6b17f3c3d6e40d6e559b9fa1e813b2ef8
