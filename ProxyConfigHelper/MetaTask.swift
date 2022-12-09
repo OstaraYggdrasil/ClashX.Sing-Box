@@ -12,6 +12,8 @@ class MetaTask: NSObject {
         let secret: String
         var log: String = ""
         
+        var enableTun: Bool
+        
         func jsonString() -> String {
             let encoder = JSONEncoder()
             encoder.outputFormatting = .prettyPrinted
@@ -34,6 +36,8 @@ class MetaTask: NSObject {
     
     var timer: DispatchSourceTimer?
     let timerQueue = DispatchQueue(label: Bundle.main.bundleIdentifier! + ".timer")
+    
+    let metaDNS = MetaDNS()
     
     @objc func setLaunchPath(_ path: String) {
         let u = URL(fileURLWithPath: path)
@@ -91,6 +95,16 @@ class MetaTask: NSObject {
                     returnResult("Can't decode config file.")
                     return
                 }
+                
+                func setTunDNS() {
+                    if serverResult.enableTun {
+                        self.metaDNS.updateDns()
+                    } else {
+                        self.metaDNS.revertDns()
+                    }
+                }
+                
+                
                 args.append("run")
                 
                 self.proc.arguments = args
@@ -128,6 +142,7 @@ class MetaTask: NSObject {
                 self.proc.standardOutput = pipe
                 
                 self.proc.terminationHandler = { proc in
+                    self.metaDNS.revertDns()
                     
                     guard !resultReturned else {
                         guard errorLogs.count > 0 else { return }
@@ -174,11 +189,13 @@ class MetaTask: NSObject {
                         return
                     }
                     serverResult.log = logs.joined(separator: "\n")
+                    setTunDNS()
                     returnResult(serverResult.jsonString())
                 }
                 
                 DispatchQueue.global().asyncAfter(deadline: .now() + 30) {
                     serverResult.log = logs.joined(separator: "\n")
+                    setTunDNS()
                     returnResult(serverResult.jsonString())
                 }
                 
@@ -198,6 +215,8 @@ class MetaTask: NSObject {
             proc.arguments = ["-15", "\(self.proc.processIdentifier)"]
             try? proc.run()
             proc.waitUntilExit()
+            
+            self.metaDNS.revertDns()
             result?(nil)
         }
     }
@@ -366,10 +385,15 @@ class MetaTask: NSObject {
     func parseConfFile(_ confPath: String, confFilePath: String) -> MetaServer? {
         let fileURL = confFilePath == "" ? URL(fileURLWithPath: confPath).appendingPathComponent("config.json", isDirectory: false) : URL(fileURLWithPath: confFilePath)
         struct ConfigJSON: Decodable {
-            let experimental: ConfigExperimental
+            let inbounds: [Inbound]
+            let experimental: ConfigExperimental?
+            
+            struct Inbound: Decodable {
+                let type: String
+            }
             
             struct ConfigExperimental: Decodable {
-                let clashAPI: ClashAPI
+                let clashAPI: ClashAPI?
                 enum CodingKeys: String, CodingKey {
                     case clashAPI = "clash_api"
                 }
@@ -388,12 +412,15 @@ class MetaTask: NSObject {
         }
         
         guard let data = FileManager.default.contents(atPath: fileURL.path),
-              let clashConfig = (try? JSONDecoder().decode(ConfigJSON.self, from: data))?.experimental.clashAPI else {
+              let configJSON = try? JSONDecoder().decode(ConfigJSON.self, from: data),
+              let clashConfig = configJSON.experimental?.clashAPI else {
             return nil
         }
         
-        return MetaServer(externalController: clashConfig.externalController,
-                          secret: clashConfig.secret ?? "")
+        return MetaServer(
+            externalController: clashConfig.externalController,
+            secret: clashConfig.secret ?? "",
+            enableTun: configJSON.inbounds.contains(where: { $0.type == "tun" }))
     }
     
     func formatConfig(_ path: String) -> Data {

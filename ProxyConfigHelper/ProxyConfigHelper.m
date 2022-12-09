@@ -26,7 +26,6 @@ ProxyConfigRemoteProcessProtocol
 @property (nonatomic, assign) BOOL shouldQuit;
 
 @property (nonatomic, strong) MetaTask *metaTask;
-@property (nonatomic, strong) MetaDNS *metaDNS;
 
 @end
 
@@ -39,7 +38,6 @@ ProxyConfigRemoteProcessProtocol
         self.listener = [[NSXPCListener alloc] initWithMachServiceName:@"com.SagerNet.Sing-Box.ProxyConfigHelper"];
         self.listener.delegate = self;
         self.metaTask = [MetaTask new];
-        self.metaDNS = [MetaDNS new];
     }
     return self;
 }
@@ -167,17 +165,6 @@ ProxyConfigRemoteProcessProtocol
 - (void)getUsedPorts:(stringReplyBlock)reply {
     dispatch_async(dispatch_get_main_queue(), ^{
         [self.metaTask getUsedPorts:reply];
-    });
-}
-
-- (void)updateTunWith:(BOOL)state {
-    dispatch_async(dispatch_get_main_queue(), ^{
-        if (state) {
-            [self.metaDNS updateDns];
-        } else {
-            [self.metaDNS revertDns];
-        }
-        [self.metaDNS flushDnsCache];
     });
 }
 
