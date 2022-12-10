@@ -77,6 +77,8 @@ class ConfigManager {
     }
 
     let isRunningVariable = BehaviorRelay<Bool>(value: false)
+    
+    var isRunningWithTun = BehaviorRelay<Bool>(value: false)
 
     var proxyPortAutoSet: Bool {
         get {

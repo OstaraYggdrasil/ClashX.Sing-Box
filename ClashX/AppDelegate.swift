@@ -51,6 +51,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     
 // MARK: - sing-box menu items
     @IBOutlet var useYamlMenuItem: NSMenuItem!
+    @IBOutlet var tunModeMenuItem: NSMenuItem!
 
     var disposeBag = DisposeBag()
     var statusItemView: StatusItemView!
@@ -240,7 +241,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
         Observable
             .merge([ConfigManager.shared.proxyPortAutoSetObservable,
-                    ConfigManager.shared.isProxySetByOtherVariable.asObservable()])
+                    ConfigManager.shared.isProxySetByOtherVariable.asObservable(),
+                    ConfigManager.shared.isRunningWithTun.asObservable()])
             .map { _ -> Bool in
                 var status = NSControl.StateValue.mixed
                 if ConfigManager.shared.isProxySetByOtherVariable.value && ConfigManager.shared.proxyPortAutoSet {
@@ -248,7 +250,11 @@ class AppDelegate: NSObject, NSApplicationDelegate {
                 } else {
                     status = ConfigManager.shared.proxyPortAutoSet ? .on : .off
                 }
-                return status == .on
+                
+                if ConfigManager.shared.isRunningWithTun.value {
+                    status = .on
+                }
+                return  status == .on
             }.distinctUntilChanged()
             .bind { [weak self] enable in
                 guard let self = self else { return }
@@ -624,6 +630,7 @@ extension AppDelegate {
         let externalController: String
         let secret: String
         let log: String?
+        let enableTun: Bool
     }
 
     func startProxy(showNotification: Bool = false, completeHandler: ((ErrorString?) -> Void)? = nil) {
@@ -651,7 +658,10 @@ extension AppDelegate {
 ########  END  #########
 """, level: .info)
             }
-
+            
+            ConfigManager.shared.isRunningWithTun.accept(res.enableTun)
+            self.tunModeMenuItem.state = res.enableTun ? .on : .off
+            
             let port = res.externalController.components(separatedBy: ":").last ?? "9090"
             ConfigManager.shared.apiPort = port
             ConfigManager.shared.apiSecret = res.secret

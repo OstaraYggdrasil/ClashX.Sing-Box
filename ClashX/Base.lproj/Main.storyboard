@@ -197,6 +197,7 @@
                         <outlet property="showProxyGroupCurrentMenuItem" destination="j9o-36-NTd" id="5jc-iE-bou"/>
                         <outlet property="socksPortMenuItem" destination="Uy1-g8-r6Q" id="NiI-Gy-9Sa"/>
                         <outlet property="statusMenu" destination="Afa-lD-EbR" id="cov-E9-WrO"/>
+                        <outlet property="tunModeMenuItem" destination="thT-tk-BO2" id="eb9-3q-MaF"/>
                         <outlet property="useYamlMenuItem" destination="JbN-EM-AzE" id="NUd-jX-EHc"/>
                     </connections>
                 </customObject>
@@ -232,6 +233,9 @@
                             <connections>
                                 <action selector="actionSetSystemProxy:" target="Voe-Tx-rLC" id="jrp-iz-ljC"/>
                             </connections>
+                        </menuItem>
+                        <menuItem title="Tun mode" enabled="NO" id="thT-tk-BO2">
+                            <modifierMask key="keyEquivalentModifierMask"/>
                         </menuItem>
                         <menuItem title="Copy shell command" keyEquivalent="c" id="Jmb-PK-rMW">
                             <connections>
