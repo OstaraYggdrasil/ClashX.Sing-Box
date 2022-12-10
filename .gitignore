@@ -20,5 +20,6 @@ fastlane/report.xml
 ClashX/Resources/geoip.db.gz
 ClashX/Resources/geosite.db.gz
 .bundle/config
-ClashX/Resources/com.metacubex.ClashX.ProxyConfigHelper.*
+ClashX/Resources/com.SagerNet.*
+sing-box.core/
 clash.meta

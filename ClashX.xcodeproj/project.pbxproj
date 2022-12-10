@@ -18,6 +18,7 @@
 		01A90C8429437DD700753F1A /* MetaTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0162E74E2864B819007218A6 /* MetaTask.swift */; };
 		01A90C8529437DD900753F1A /* MetaDNS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01BC9ABD2928E5C600F9B177 /* MetaDNS.swift */; };
 		01A90C8629437E0C00753F1A /* CommonUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 491E61FD258A424500313AEF /* CommonUtils.m */; };
+		01A90C882944CBA500753F1A /* com.SagerNet.Sing-Box.ProxyConfigHelper.box.gz in Resources */ = {isa = PBXBuildFile; fileRef = 01A90C872944CBA500753F1A /* com.SagerNet.Sing-Box.ProxyConfigHelper.box.gz */; };
 		01B009AE2854533300B93618 /* geoip.db.gz in Resources */ = {isa = PBXBuildFile; fileRef = 01B009AC2854533200B93618 /* geoip.db.gz */; };
 		01B009AF2854533300B93618 /* geosite.db.gz in Resources */ = {isa = PBXBuildFile; fileRef = 01B009AD2854533300B93618 /* geosite.db.gz */; };
 		01BFF3C128CB9D6D006CE3F2 /* menu_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 01BFF3C028CB9D6D006CE3F2 /* menu_icon.png */; };
@@ -144,6 +145,7 @@
 		019A239528657A7A00AE5698 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		01A5F36E28CCC5CD004FA5F1 /* ClashVmess.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClashVmess.swift; sourceTree = "<group>"; };
 		01A5F37028CCC5E0004FA5F1 /* SingBoxVmess.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingBoxVmess.swift; sourceTree = "<group>"; };
+		01A90C872944CBA500753F1A /* com.SagerNet.Sing-Box.ProxyConfigHelper.box.gz */ = {isa = PBXFileReference; lastKnownFileType = archive.gzip; path = "com.SagerNet.Sing-Box.ProxyConfigHelper.box.gz"; sourceTree = "<group>"; };
 		01B009AC2854533200B93618 /* geoip.db.gz */ = {isa = PBXFileReference; lastKnownFileType = archive.gzip; path = geoip.db.gz; sourceTree = "<group>"; };
 		01B009AD2854533300B93618 /* geosite.db.gz */ = {isa = PBXFileReference; lastKnownFileType = archive.gzip; path = geosite.db.gz; sourceTree = "<group>"; };
 		01BC9ABD2928E5C600F9B177 /* MetaDNS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MetaDNS.swift; sourceTree = "<group>"; };
@@ -412,6 +414,7 @@
 				01BFF3C028CB9D6D006CE3F2 /* menu_icon.png */,
 				01B009AC2854533200B93618 /* geoip.db.gz */,
 				01B009AD2854533300B93618 /* geosite.db.gz */,
+				01A90C872944CBA500753F1A /* com.SagerNet.Sing-Box.ProxyConfigHelper.box.gz */,
 				49761DA621C9497000AE13EF /* dashboard */,
 				4989F98D20D0AE990001E564 /* sampleConfig.json */,
 			);
@@ -650,6 +653,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				01BFF3C128CB9D6D006CE3F2 /* menu_icon.png in Resources */,
+				01A90C882944CBA500753F1A /* com.SagerNet.Sing-Box.ProxyConfigHelper.box.gz in Resources */,
 				01B009AF2854533300B93618 /* geosite.db.gz in Resources */,
 				49761DA721C9497000AE13EF /* dashboard in Resources */,
 				4981C88B216BAE4A008CC14A /* Localizable.strings in Resources */,
