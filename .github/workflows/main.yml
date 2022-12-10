@@ -8,7 +8,7 @@ on:
       logLevel:
 
 env:
-  DEVELOPER_DIR: /Applications/Xcode_13.4.1.app/Contents/Developer
+  DEVELOPER_DIR: /Applications/Xcode_14.1.app/Contents/Developer
 
 jobs:
   build:
@@ -21,10 +21,14 @@ jobs:
     - name: test
       run: git rev-list --count origin/master..origin/sing-box
 
-    - name: setup Go
-      uses: actions/setup-go@v3
+    - name: download sing-box core
+      uses: robinraju/release-downloader@v1.5
       with:
-        go-version: 1.19.x
+        repository: 'SagerNet/sing-box'
+        latest: true
+        fileName: ".*darwin-*64.tar.gz"
+        out-file-path: "sing-box.core"
+        token: ${{ secrets.GITHUB_TOKEN }}
     
     - name: install deps
       run: bash install_dependency.sh

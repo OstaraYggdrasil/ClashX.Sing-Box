@@ -11,7 +11,7 @@ let kConfigFolderPath = "\(NSHomeDirectory())/.config/sing-box/"
 
 let kDefaultConfigFilePath = "\(kConfigFolderPath)config.json"
 
-let kDefauleMetaCoreName = "com.metacubex.ClashX.ProxyConfigHelper.meta"
+let kDefauleMetaCoreName = "com.SagerNet.Sing-Box.ProxyConfigHelper.box"
 
 struct Paths {
     static func localConfigPath(for name: String) -> String {
@@ -42,10 +42,4 @@ struct Paths {
         Bundle.main.path(forResource: kDefauleMetaCoreName, ofType: "gz")
     }
 
-    static func alphaCorePath() -> URL? {
-        FileManager.default.urls(for: .applicationSupportDirectory, in: .userDomainMask)
-            .first?
-            .appendingPathComponent("com.metacubex.ClashX.meta")
-            .appendingPathComponent(kDefauleMetaCoreName)
-    }
 }

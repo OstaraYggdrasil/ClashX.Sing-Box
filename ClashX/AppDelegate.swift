@@ -16,7 +16,7 @@ import PromiseKit
 
 private let statusItemLengthWithSpeed: CGFloat = 72
 
-private let MetaCoreMd5 = "WOSHIZIDONGSHENGCHENGDEA"
+private let SingBoxCoreMd5 = "WOSHIZIDONGSHENGCHENGDEA"
 
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
@@ -442,11 +442,23 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
     func initMetaCore() {
         Logger.log("initClashCore")
-        let corePath = "\(NSHomeDirectory())/go/bin/sing-box"
+        let corePath: String = {
+            if let re = unzipMetaCore() {
+                return re
+            }
+
+            if let path = Paths.defaultCorePath(),
+               testMetaCore(path) != nil,
+               validateDefaultCore() {
+                return path
+            } else {
+                return "ERROR"
+            }
+        }()
         
         guard let version = testMetaCore(corePath) else {
             let alert = NSAlert()
-            alert.messageText = "Failure to verify the sing-box in ~/go/bin/sing-box."
+            alert.messageText = "Failure to verify the sing-box"
             alert.alertStyle = .warning
             alert.addButton(withTitle: NSLocalizedString("Quit", comment: ""))
             alert.runModal()
@@ -461,6 +473,40 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         PrivilegedHelperManager.shared.helper()?.initMetaCore(withPath: corePath)
         Logger.log("initClashCore finish with sing-box version: \(version)")
     }
+    
+    func unzipMetaCore() -> String? {
+        guard var path = Bundle.main.resourcePath,
+              let p = Paths.defaultCoreGzPath() else { return "ERROR" }
+        path += "/\(kDefauleMetaCoreName)"
+
+        do {
+            let data = try Data(contentsOf: .init(fileURLWithPath: p)).gunzipped()
+            try data.write(to: URL(fileURLWithPath: path))
+            return nil
+        } catch let error {
+            Logger.log("Unzip Meta failed: \(error)", level: .error)
+            Logger.log("Fallback gunzip", level: .error)
+        }
+
+        let proc = Process()
+        proc.executableURL = .init(fileURLWithPath: "/usr/bin/gunzip")
+        proc.arguments = ["-dk", p]
+
+        do {
+            try proc.run()
+        } catch let error {
+            Logger.log("Unzip Meta failed: \(error)", level: .error)
+            return "ERROR"
+        }
+
+        proc.waitUntilExit()
+        guard proc.terminationStatus == 0 else {
+            Logger.log("Unzip Meta failed with terminationStatus: \(proc.terminationStatus)", level: .error)
+            return "ERROR"
+        }
+        return nil
+    }
+
 
     func testMetaCore(_ path: String) -> String? {
         guard FileManager.default.fileExists(atPath: path),
@@ -517,7 +563,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         }
 
         let md5 = out.replacingOccurrences(of: "\n", with: "")
-        return md5 == MetaCoreMd5
+        return md5 == SingBoxCoreMd5
     }
 
     func chmodX(_ path: String) -> Bool {
