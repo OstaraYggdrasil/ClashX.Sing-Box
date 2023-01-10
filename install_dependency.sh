@@ -8,16 +8,16 @@ tar -xvf sing-box*arm64*
 tar -xvf sing-box*amd64*
 
 echo "Create Universal core"
-lipo -create -output com.SagerNet.Sing-Box.ProxyConfigHelper.box sing-box*arm64*/sing-box sing-box*amd64*/sing-box
-chmod +x com.SagerNet.Sing-Box.ProxyConfigHelper.box
+lipo -create -output com.SagerNet.sing-box.ProxyConfigHelper.core sing-box*arm64*/sing-box sing-box*amd64*/sing-box
+chmod +x com.SagerNet.sing-box.ProxyConfigHelper.core
 
 echo "Update meta core md5 to code"
-sed -i '' "s/WOSHIZIDONGSHENGCHENGDEA/$(md5 -q com.SagerNet.Sing-Box.ProxyConfigHelper.box)/g" ../ClashX/AppDelegate.swift
+sed -i '' "s/WOSHIZIDONGSHENGCHENGDEA/$(md5 -q com.SagerNet.sing-box.ProxyConfigHelper.core)/g" ../ClashX/AppDelegate.swift
 sed -n '20p' ../ClashX/AppDelegate.swift
 
 echo "Gzip Universal core"
-gzip com.SagerNet.Sing-Box.ProxyConfigHelper.box
-cp com.SagerNet.Sing-Box.ProxyConfigHelper.box.gz ../ClashX/Resources/
+gzip com.SagerNet.sing-box.ProxyConfigHelper.core
+cp com.SagerNet.sing-box.ProxyConfigHelper.core.gz ../ClashX/Resources/
 cd ..
 
 

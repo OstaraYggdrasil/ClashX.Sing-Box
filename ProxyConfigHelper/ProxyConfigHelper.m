@@ -11,7 +11,7 @@
 #import "ProxyConfigRemoteProcessProtocol.h"
 #import "ProxySettingTool.h"
 
-#import "com_SagerNet_Sing_Box_ProxyConfigHelper-Swift.h"
+#import "com_SagerNet_sing_box_ProxyConfigHelper-Swift.h"
 
 
 @interface ProxyConfigHelper()
@@ -35,7 +35,7 @@ ProxyConfigRemoteProcessProtocol
     if (self = [super init]) {
         self.connections = [NSMutableSet new];
         self.shouldQuit = NO;
-        self.listener = [[NSXPCListener alloc] initWithMachServiceName:@"com.SagerNet.Sing-Box.ProxyConfigHelper"];
+        self.listener = [[NSXPCListener alloc] initWithMachServiceName:@"com.SagerNet.sing-box.ProxyConfigHelper"];
         self.listener.delegate = self;
         self.metaTask = [MetaTask new];
     }

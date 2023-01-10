@@ -11,7 +11,7 @@ let kConfigFolderPath = "\(NSHomeDirectory())/.config/sing-box/"
 
 let kDefaultConfigFilePath = "\(kConfigFolderPath)config.json"
 
-let kDefauleMetaCoreName = "com.SagerNet.Sing-Box.ProxyConfigHelper.box"
+let kDefauleMetaCoreName = "com.SagerNet.sing-box.ProxyConfigHelper.core"
 
 struct Paths {
     static func localConfigPath(for name: String) -> String {

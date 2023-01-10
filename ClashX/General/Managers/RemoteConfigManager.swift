@@ -212,7 +212,7 @@ class RemoteConfigManager {
     }
 
     static func createCacheConfig(string: String) -> String? {
-        let path = NSTemporaryDirectory().appending("com.SagerNet.Sing-Box") + "/cacheConfigs"
+        let path = NSTemporaryDirectory().appending("com.SagerNet.sing-box") + "/cacheConfigs"
         let confPath = path + "/\(UUID().uuidString).json"
 
         let fm = FileManager.default

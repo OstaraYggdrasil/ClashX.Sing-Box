@@ -87,7 +87,7 @@ class MetaDNS: NSObject {
     
     func getDNSForServiceID(_ serviceID:String) -> [String] {
         let serviceSetupDNSKey = "Setup:/Network/Service/\(serviceID)/DNS" as CFString
-        let dynmaicStore =  SCDynamicStoreCreate(kCFAllocatorSystemDefault, "com.metacubex.ClashX.ProxyConfigHelper.dns" as CFString, nil, nil)
+        let dynmaicStore =  SCDynamicStoreCreate(kCFAllocatorSystemDefault, "com.SagerNet.sing-box.ProxyConfigHelper.dns" as CFString, nil, nil)
         
         return SCDynamicStoreCopyValue(dynmaicStore, serviceSetupDNSKey)?[kSCPropNetDNSServerAddresses] as? [String] ?? []
     }
@@ -103,7 +103,7 @@ class MetaDNS: NSObject {
 
         guard let prefRef = SCPreferencesCreateWithAuthorization(
             nil,
-            "com.metacubex.ClashX.ProxyConfigHelper.config" as CFString,
+            "com.SagerNet.sing-box.ProxyConfigHelper.config" as CFString,
             nil,
             authRef) else {
             NSLog("Error: Failed to obtain preference ref.")

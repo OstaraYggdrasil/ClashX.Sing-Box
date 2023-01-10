@@ -3,10 +3,10 @@
 <plist version="1.0">
 <dict>
 	<key>Label</key>
-	<string>com.SagerNet.Sing-Box.ProxyConfigHelper</string>
+	<string>com.SagerNet.sing-box.ProxyConfigHelper</string>
 	<key>MachServices</key>
 	<dict>
-		<key>com.SagerNet.Sing-Box.ProxyConfigHelper</key>
+		<key>com.SagerNet.sing-box.ProxyConfigHelper</key>
 		<true/>
 	</dict>
 </dict>

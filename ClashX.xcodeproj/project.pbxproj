@@ -18,7 +18,7 @@
 		01A90C8429437DD700753F1A /* MetaTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0162E74E2864B819007218A6 /* MetaTask.swift */; };
 		01A90C8529437DD900753F1A /* MetaDNS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01BC9ABD2928E5C600F9B177 /* MetaDNS.swift */; };
 		01A90C8629437E0C00753F1A /* CommonUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 491E61FD258A424500313AEF /* CommonUtils.m */; };
-		01A90C882944CBA500753F1A /* com.SagerNet.Sing-Box.ProxyConfigHelper.box.gz in Resources */ = {isa = PBXBuildFile; fileRef = 01A90C872944CBA500753F1A /* com.SagerNet.Sing-Box.ProxyConfigHelper.box.gz */; };
+		01A90C882944CBA500753F1A /* com.SagerNet.sing-box.ProxyConfigHelper.core.gz in Resources */ = {isa = PBXBuildFile; fileRef = 01A90C872944CBA500753F1A /* com.SagerNet.sing-box.ProxyConfigHelper.core.gz */; };
 		01B009AE2854533300B93618 /* geoip.db.gz in Resources */ = {isa = PBXBuildFile; fileRef = 01B009AC2854533200B93618 /* geoip.db.gz */; };
 		01B009AF2854533300B93618 /* geosite.db.gz in Resources */ = {isa = PBXBuildFile; fileRef = 01B009AD2854533300B93618 /* geosite.db.gz */; };
 		01BFF3C128CB9D6D006CE3F2 /* menu_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 01BFF3C028CB9D6D006CE3F2 /* menu_icon.png */; };
@@ -87,7 +87,7 @@
 		F92D0B2A236C759100575E15 /* NSTextField+Vibrancy.swift in Sources */ = {isa = PBXBuildFile; fileRef = F92D0B29236C759100575E15 /* NSTextField+Vibrancy.swift */; };
 		F92D0B2C236C7C3600575E15 /* MenuItemBaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F92D0B2B236C7C3600575E15 /* MenuItemBaseView.swift */; };
 		F92D0B2E236D35C000575E15 /* ProxyItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F92D0B2D236D35C000575E15 /* ProxyItemView.swift */; };
-		F935B2F02307C52E009E4D33 /* com.SagerNet.Sing-Box.ProxyConfigHelper in Copy Files */ = {isa = PBXBuildFile; fileRef = F9A7C0692306E874007163C7 /* com.SagerNet.Sing-Box.ProxyConfigHelper */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+		F935B2F02307C52E009E4D33 /* com.SagerNet.sing-box.ProxyConfigHelper in Copy Files */ = {isa = PBXBuildFile; fileRef = F9A7C0692306E874007163C7 /* com.SagerNet.sing-box.ProxyConfigHelper */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		F935B2F42307CD32009E4D33 /* ProxyConfigHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = F935B2F32307CD32009E4D33 /* ProxyConfigHelper.m */; };
 		F935B2FA23083EE6009E4D33 /* ProxySettingTool.m in Sources */ = {isa = PBXBuildFile; fileRef = F935B2F923083EE6009E4D33 /* ProxySettingTool.m */; };
 		F935B2FC23085515009E4D33 /* SystemProxyManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F935B2FB23085515009E4D33 /* SystemProxyManager.swift */; };
@@ -119,7 +119,7 @@
 			dstPath = Contents/Library/LaunchServices;
 			dstSubfolderSpec = 1;
 			files = (
-				F935B2F02307C52E009E4D33 /* com.SagerNet.Sing-Box.ProxyConfigHelper in Copy Files */,
+				F935B2F02307C52E009E4D33 /* com.SagerNet.sing-box.ProxyConfigHelper in Copy Files */,
 			);
 			name = "Copy Files";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -138,14 +138,14 @@
 
 /* Begin PBXFileReference section */
 		015F1E90288E42A50052B20A /* ClashMetaConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClashMetaConfig.swift; sourceTree = "<group>"; };
-		0162E74D2864B818007218A6 /* com.metacubex.ClashX.ProxyConfigHelper-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "com.metacubex.ClashX.ProxyConfigHelper-Bridging-Header.h"; sourceTree = "<group>"; };
+		0162E74D2864B818007218A6 /* com.SagerNet.sing-box.ProxyConfigHelper-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "com.SagerNet.sing-box.ProxyConfigHelper-Bridging-Header.h"; sourceTree = "<group>"; };
 		0162E74E2864B819007218A6 /* MetaTask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MetaTask.swift; sourceTree = "<group>"; };
 		018F88F8286DD0CB004DD0F7 /* DualTitleMenuItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DualTitleMenuItem.swift; sourceTree = "<group>"; };
 		01943258287D19BC008CC51A /* ClashRuleProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClashRuleProvider.swift; sourceTree = "<group>"; };
 		019A239528657A7A00AE5698 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		01A5F36E28CCC5CD004FA5F1 /* ClashVmess.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClashVmess.swift; sourceTree = "<group>"; };
 		01A5F37028CCC5E0004FA5F1 /* SingBoxVmess.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingBoxVmess.swift; sourceTree = "<group>"; };
-		01A90C872944CBA500753F1A /* com.SagerNet.Sing-Box.ProxyConfigHelper.box.gz */ = {isa = PBXFileReference; lastKnownFileType = archive.gzip; path = "com.SagerNet.Sing-Box.ProxyConfigHelper.box.gz"; sourceTree = "<group>"; };
+		01A90C872944CBA500753F1A /* com.SagerNet.sing-box.ProxyConfigHelper.core.gz */ = {isa = PBXFileReference; lastKnownFileType = archive.gzip; path = "com.SagerNet.sing-box.ProxyConfigHelper.core.gz"; sourceTree = "<group>"; };
 		01B009AC2854533200B93618 /* geoip.db.gz */ = {isa = PBXFileReference; lastKnownFileType = archive.gzip; path = geoip.db.gz; sourceTree = "<group>"; };
 		01B009AD2854533300B93618 /* geosite.db.gz */ = {isa = PBXFileReference; lastKnownFileType = archive.gzip; path = geosite.db.gz; sourceTree = "<group>"; };
 		01BC9ABD2928E5C600F9B177 /* MetaDNS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MetaDNS.swift; sourceTree = "<group>"; };
@@ -186,7 +186,7 @@
 		4981C88E216BAE4D008CC14A /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		4982F51E2344A216008804B0 /* Cgo+Convert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Cgo+Convert.swift"; sourceTree = "<group>"; };
 		49862F9F218418C600A1D5EC /* ClashRule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClashRule.swift; sourceTree = "<group>"; };
-		498960722340F21C00AFB7EC /* com.metacubex.ClashX.ProxyConfigHelper.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = com.metacubex.ClashX.ProxyConfigHelper.entitlements; sourceTree = "<group>"; };
+		498960722340F21C00AFB7EC /* com.SagerNet.sing-box.ProxyConfigHelper.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "com.SagerNet.sing-box.ProxyConfigHelper.entitlements"; sourceTree = "<group>"; };
 		4989F98D20D0AE990001E564 /* sampleConfig.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = sampleConfig.json; sourceTree = "<group>"; };
 		499976C721359F0400E7BF83 /* ClashWebViewContoller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClashWebViewContoller.swift; sourceTree = "<group>"; };
 		499A485322ED707300F6C675 /* RemoteConfigViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteConfigViewController.swift; sourceTree = "<group>"; };
@@ -243,7 +243,7 @@
 		F976275B23634DF8000EDEFE /* LoginServiceKit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginServiceKit.swift; sourceTree = "<group>"; };
 		F977FAAB2366790500C17F1F /* AutoUpgardeManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutoUpgardeManager.swift; sourceTree = "<group>"; };
 		F977FAAD23669D6400C17F1F /* ConnectionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectionManager.swift; sourceTree = "<group>"; };
-		F9A7C0692306E874007163C7 /* com.SagerNet.Sing-Box.ProxyConfigHelper */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "com.SagerNet.Sing-Box.ProxyConfigHelper"; sourceTree = BUILT_PRODUCTS_DIR; };
+		F9A7C0692306E874007163C7 /* com.SagerNet.sing-box.ProxyConfigHelper */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "com.SagerNet.sing-box.ProxyConfigHelper"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F9C180A1243C6590005EE8C4 /* goClash.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = goClash.a; path = ClashX/goClash/goClash.a; sourceTree = SOURCE_ROOT; };
 		F9C180A2243C6590005EE8C4 /* goClash.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = goClash.h; path = ClashX/goClash/goClash.h; sourceTree = SOURCE_ROOT; };
 		F9E754CF239CC21F00CEE7CC /* WebPortalManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebPortalManager.swift; sourceTree = "<group>"; };
@@ -414,7 +414,7 @@
 				01BFF3C028CB9D6D006CE3F2 /* menu_icon.png */,
 				01B009AC2854533200B93618 /* geoip.db.gz */,
 				01B009AD2854533300B93618 /* geosite.db.gz */,
-				01A90C872944CBA500753F1A /* com.SagerNet.Sing-Box.ProxyConfigHelper.box.gz */,
+				01A90C872944CBA500753F1A /* com.SagerNet.sing-box.ProxyConfigHelper.core.gz */,
 				49761DA621C9497000AE13EF /* dashboard */,
 				4989F98D20D0AE990001E564 /* sampleConfig.json */,
 			);
@@ -459,7 +459,7 @@
 			isa = PBXGroup;
 			children = (
 				49CF3B1D20CD7463001EBF94 /* Sing-Box.app */,
-				F9A7C0692306E874007163C7 /* com.SagerNet.Sing-Box.ProxyConfigHelper */,
+				F9A7C0692306E874007163C7 /* com.SagerNet.sing-box.ProxyConfigHelper */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -542,7 +542,7 @@
 			children = (
 				491E61FC258A424500313AEF /* CommonUtils.h */,
 				491E61FD258A424500313AEF /* CommonUtils.m */,
-				498960722340F21C00AFB7EC /* com.metacubex.ClashX.ProxyConfigHelper.entitlements */,
+				498960722340F21C00AFB7EC /* com.SagerNet.sing-box.ProxyConfigHelper.entitlements */,
 				019A239528657A7A00AE5698 /* main.swift */,
 				0162E74E2864B819007218A6 /* MetaTask.swift */,
 				01BC9ABD2928E5C600F9B177 /* MetaDNS.swift */,
@@ -553,7 +553,7 @@
 				F935B2F52307D00D009E4D33 /* ProxyConfigRemoteProcessProtocol.h */,
 				F935B2F823083EE6009E4D33 /* ProxySettingTool.h */,
 				F935B2F923083EE6009E4D33 /* ProxySettingTool.m */,
-				0162E74D2864B818007218A6 /* com.metacubex.ClashX.ProxyConfigHelper-Bridging-Header.h */,
+				0162E74D2864B818007218A6 /* com.SagerNet.sing-box.ProxyConfigHelper-Bridging-Header.h */,
 			);
 			path = ProxyConfigHelper;
 			sourceTree = "<group>";
@@ -582,9 +582,9 @@
 			productReference = 49CF3B1D20CD7463001EBF94 /* Sing-Box.app */;
 			productType = "com.apple.product-type.application";
 		};
-		F9A7C0682306E874007163C7 /* com.SagerNet.Sing-Box.ProxyConfigHelper */ = {
+		F9A7C0682306E874007163C7 /* com.SagerNet.sing-box.ProxyConfigHelper */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = F9A7C06D2306E874007163C7 /* Build configuration list for PBXNativeTarget "com.SagerNet.Sing-Box.ProxyConfigHelper" */;
+			buildConfigurationList = F9A7C06D2306E874007163C7 /* Build configuration list for PBXNativeTarget "com.SagerNet.sing-box.ProxyConfigHelper" */;
 			buildPhases = (
 				F9A7C0652306E874007163C7 /* Sources */,
 				F9A7C0662306E874007163C7 /* Frameworks */,
@@ -594,9 +594,9 @@
 			);
 			dependencies = (
 			);
-			name = "com.SagerNet.Sing-Box.ProxyConfigHelper";
+			name = "com.SagerNet.sing-box.ProxyConfigHelper";
 			productName = ProxyConfigHelper;
-			productReference = F9A7C0692306E874007163C7 /* com.SagerNet.Sing-Box.ProxyConfigHelper */;
+			productReference = F9A7C0692306E874007163C7 /* com.SagerNet.sing-box.ProxyConfigHelper */;
 			productType = "com.apple.product-type.tool";
 		};
 /* End PBXNativeTarget section */
@@ -642,7 +642,7 @@
 			projectRoot = "";
 			targets = (
 				49CF3B1C20CD7463001EBF94 /* Sing-Box */,
-				F9A7C0682306E874007163C7 /* com.SagerNet.Sing-Box.ProxyConfigHelper */,
+				F9A7C0682306E874007163C7 /* com.SagerNet.sing-box.ProxyConfigHelper */,
 			);
 		};
 /* End PBXProject section */
@@ -653,7 +653,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				01BFF3C128CB9D6D006CE3F2 /* menu_icon.png in Resources */,
-				01A90C882944CBA500753F1A /* com.SagerNet.Sing-Box.ProxyConfigHelper.box.gz in Resources */,
+				01A90C882944CBA500753F1A /* com.SagerNet.sing-box.ProxyConfigHelper.core.gz in Resources */,
 				01B009AF2854533300B93618 /* geosite.db.gz in Resources */,
 				49761DA721C9497000AE13EF /* dashboard in Resources */,
 				4981C88B216BAE4A008CC14A /* Localizable.strings in Resources */,
@@ -806,7 +806,7 @@
 /* Begin PBXTargetDependency section */
 		F935B2EC2307B7CD009E4D33 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = F9A7C0682306E874007163C7 /* com.SagerNet.Sing-Box.ProxyConfigHelper */;
+			target = F9A7C0682306E874007163C7 /* com.SagerNet.sing-box.ProxyConfigHelper */;
 			targetProxy = F935B2EB2307B7CD009E4D33 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -982,7 +982,7 @@
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.13;
 				MARKETING_VERSION = v1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.SagerNet.Sing-Box";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.SagerNet.ClashX.sing-box";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				STRIP_INSTALLED_PRODUCT = NO;
@@ -1030,7 +1030,7 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.13;
 				MARKETING_VERSION = v1.0;
 				OTHER_CODE_SIGN_FLAGS = "--timestamp";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.SagerNet.Sing-Box";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.SagerNet.ClashX.sing-box";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				STRIP_INSTALLED_PRODUCT = YES;
@@ -1045,7 +1045,7 @@
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD)";
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_ENTITLEMENTS = ProxyConfigHelper/com.metacubex.ClashX.ProxyConfigHelper.entitlements;
+				CODE_SIGN_ENTITLEMENTS = "ProxyConfigHelper/com.SagerNet.sing-box.ProxyConfigHelper.entitlements";
 				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 3;
@@ -1072,11 +1072,11 @@
 					__launchd_plist,
 					"\"$(SRCROOT)/ProxyConfigHelper/Helper-Launchd.plist\"",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.SagerNet.Sing-Box.ProxyConfigHelper";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.SagerNet.sing-box.ProxyConfigHelper";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SKIP_INSTALL = YES;
-				SWIFT_OBJC_BRIDGING_HEADER = "ProxyConfigHelper/com.metacubex.ClashX.ProxyConfigHelper-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "ProxyConfigHelper/com.SagerNet.sing-box.ProxyConfigHelper-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 			};
@@ -1087,7 +1087,7 @@
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD)";
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_ENTITLEMENTS = ProxyConfigHelper/com.metacubex.ClashX.ProxyConfigHelper.entitlements;
+				CODE_SIGN_ENTITLEMENTS = "ProxyConfigHelper/com.SagerNet.sing-box.ProxyConfigHelper.entitlements";
 				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 3;
@@ -1114,11 +1114,11 @@
 					__launchd_plist,
 					"\"$(SRCROOT)/ProxyConfigHelper/Helper-Launchd.plist\"",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.SagerNet.Sing-Box.ProxyConfigHelper";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.SagerNet.sing-box.ProxyConfigHelper";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SKIP_INSTALL = YES;
-				SWIFT_OBJC_BRIDGING_HEADER = "ProxyConfigHelper/com.metacubex.ClashX.ProxyConfigHelper-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "ProxyConfigHelper/com.SagerNet.sing-box.ProxyConfigHelper-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
@@ -1144,7 +1144,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		F9A7C06D2306E874007163C7 /* Build configuration list for PBXNativeTarget "com.SagerNet.Sing-Box.ProxyConfigHelper" */ = {
+		F9A7C06D2306E874007163C7 /* Build configuration list for PBXNativeTarget "com.SagerNet.sing-box.ProxyConfigHelper" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				F9A7C06E2306E874007163C7 /* Debug */,

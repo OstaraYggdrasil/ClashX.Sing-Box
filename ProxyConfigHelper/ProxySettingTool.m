@@ -241,7 +241,7 @@
 }
 
 - (void)applySCNetworkSettingWithRef:(void(^)(SCPreferencesRef))callback {
-    SCPreferencesRef ref = SCPreferencesCreateWithAuthorization(nil, CFSTR("com.SagerNet.Sing-Box.ProxyConfigHelper.config"), nil, self.authRef);
+    SCPreferencesRef ref = SCPreferencesCreateWithAuthorization(nil, CFSTR("com.SagerNet.sing-box.ProxyConfigHelper.config"), nil, self.authRef);
     if (!ref) {
         return;
     }
