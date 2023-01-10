@@ -22,10 +22,10 @@ jobs:
       run: git rev-list --count origin/master..origin/sing-box
 
     - name: download sing-box core
-      uses: robinraju/release-downloader@v1.5
+      uses: robinraju/release-downloader@v1.7
       with:
         repository: 'SagerNet/sing-box'
-        latest: true
+        tag: "v1.1.2"
         fileName: ".*darwin-*64.tar.gz"
         out-file-path: "sing-box.core"
         token: ${{ secrets.GITHUB_TOKEN }}
