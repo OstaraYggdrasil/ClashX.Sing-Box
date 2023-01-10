@@ -277,7 +277,7 @@ class MetaTask: NSObject {
     func killOldProc() {
         let proc = Process()
         proc.executableURL = .init(fileURLWithPath: "/usr/bin/killall")
-        proc.arguments = ["sing-box"]
+        proc.arguments = ["com.SagerNet.sing-box.ProxyConfigHelper.core"]
         try? proc.run()
         proc.waitUntilExit()
     }
