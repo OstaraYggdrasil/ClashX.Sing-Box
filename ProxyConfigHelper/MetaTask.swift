@@ -212,7 +212,7 @@ class MetaTask: NSObject {
             guard self.proc.isRunning else { return }
             let proc = Process()
             proc.executableURL = .init(fileURLWithPath: "/bin/kill")
-            proc.arguments = ["-15", "\(self.proc.processIdentifier)"]
+            proc.arguments = ["-9", "\(self.proc.processIdentifier)"]
             try? proc.run()
             proc.waitUntilExit()
             
