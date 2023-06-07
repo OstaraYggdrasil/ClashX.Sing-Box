@@ -38,4 +38,4 @@ gzip geoip.db
 mv geoip.db.gz ./ClashX/Resources/geoip.db.gz
 echo "install dashboard"
 cd ClashX/Resources
-git clone -b gh-pages https://github.com/haishanh/yacd.git dashboard
+git clone -b gh-pages https://github.com/OstaraYggdrasil/yacd.git dashboard
