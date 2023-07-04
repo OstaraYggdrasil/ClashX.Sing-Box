@@ -25,7 +25,7 @@ jobs:
       uses: robinraju/release-downloader@v1.7
       with:
         repository: 'SagerNet/sing-box'
-        tag: "v1.3-beta12"
+        tag: "v1.3.0"
         fileName: ".*darwin-*64.tar.gz"
         out-file-path: "sing-box.core"
         token: ${{ secrets.GITHUB_TOKEN }}
